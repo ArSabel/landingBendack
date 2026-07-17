@@ -94,3 +94,19 @@ Puedes visualizar el proyecto localmente desde la carpeta del repositorio:
 3. Abre en tu navegador `http://localhost:8000`
 
 También puedes abrir `index.html` directamente si prefieres ver el contenido sin servidor.
+
+## Docker
+
+Este repo ya incluye soporte para EasyPanel con:
+
+- `Dockerfile`
+- `nginx.conf`
+- `.dockerignore`
+
+La imagen:
+
+- construye el sitio con `npm ci` y `npm run build`
+- sirve el resultado compilado desde Nginx
+- escucha en el puerto `8080`
+
+En EasyPanel usa `8080` como puerto interno del contenedor.
