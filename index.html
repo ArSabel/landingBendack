@@ -3,3568 +3,791 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#FBF7F2">
-<meta name="description" content="Carlos Steven. Lo que ella no se atreve a decirte. Lo que tu deseo te quiere mostrar.">
-<title>Carlos Steven</title>
-
-<!--
-  ┌──────────────────────────────────────────────────────────────────────┐
-  │  LANDING v3 NETWHEELS — Minimalista premium                          │
-  │                                                                       │
-  │  ANTES DE PUBLICAR — datos placeholder marcados con [SEED]:          │
-  │   1. Reseñas: reemplazar el array REVIEWS_SEED por reseñas REALES   │
-  │      apenas tengas en Shopify Reviews app o Loox o Judge.me          │
-  │   2. Notificaciones de compra: el componente está activo pero usa    │
-  │      el array PURCHASE_FEED_SEED — reemplazar por pedidos reales     │
-  │      desde Shopify Orders API o desactivar dejando array vacío []    │
-  │   3. GA4 / Meta Pixel: descomentar bloques al final con IDs reales   │
-  │                                                                       │
-  │  Reglas Netwheels:                                                   │
-  │   - No inventar testimonios, números, garantías                      │
-  │   - Carril verde: educativo, sin claims                              │
-  │   - 18+ obligatorio                                                  │
-  └──────────────────────────────────────────────────────────────────────┘
--->
+<meta name="theme-color" content="#0B1020">
+<meta name="description" content="Carlos Steven diseña soluciones tecnológicas claras, rápidas y escalables para negocios que necesitan vender, operar y crecer con menos fricción.">
+<title>Carlos Steven | Soluciones Tecnológicas</title>
 
 <style>
 :root {
-  --ink: #1A1622;
-  --accent: #8F3322;
-  --accent-soft: #B85540;
-  --paper: #FBF7F2;
-  --cream: #F3ECE2;
-  --line: #E5DCCE;
-  --soft: #4A4356;
-  --hint: #8A8090;
+  --bg: #0B1020;
+  --bg-soft: #121A31;
+  --panel: rgba(255,255,255,.06);
+  --panel-strong: rgba(255,255,255,.09);
+  --line: rgba(255,255,255,.12);
+  --text: #F4F7FF;
+  --muted: #A8B2D1;
+  --accent: #7CF6C6;
+  --accent-2: #82A7FF;
+  --accent-3: #FFB86B;
+  --shadow: 0 24px 80px rgba(0, 0, 0, .35);
+  --radius: 22px;
+  --radius-sm: 16px;
   --max: 1180px;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
-@media (prefers-reduced-motion: no-preference) {
-  /* Animaciones más fluidas y professional easing */
-  .book, .pack-spotlight, .trust-card, .team-member, .fears-col, .how-step {
-    transition: transform 0.55s cubic-bezier(.2,.9,.3,1.1), box-shadow 0.4s, filter 0.4s;
-  }
-  .book:hover, .trust-card:hover, .team-member:hover, .fears-col:hover {
-    transform: translateY(-6px);
-  }
-  .trust-card:hover, .team-member:hover, .fears-col:hover {
-    box-shadow: 0 18px 40px rgba(26,22,34,0.12);
-  }
-}
-.reveal { transition: opacity 0.85s cubic-bezier(.2,.9,.3,1.1), transform 0.85s cubic-bezier(.2,.9,.3,1.1); }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  background: var(--paper); color: var(--ink);
-  line-height: 1.55; font-size: 17px;
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(130,167,255,.18), transparent 28%),
+    radial-gradient(circle at 80% 20%, rgba(124,246,198,.14), transparent 22%),
+    linear-gradient(180deg, #0B1020 0%, #090D18 100%);
+  min-height: 100vh;
   overflow-x: hidden;
 }
+a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
-a { color: inherit; }
-.serif { font-family: "Times New Roman", Georgia, "EB Garamond", serif; }
+button { font: inherit; }
 
-/* ── AGE GATE ── */
-.age-gate {
-  position: fixed; inset: 0;
-  background: rgba(26,22,34,0.97);
-  backdrop-filter: blur(14px);
-  z-index: 1000;
-  display: flex; align-items: center; justify-content: center;
-  padding: 24px;
-  animation: fadeIn 0.4s ease;
+.page {
+  position: relative;
+  isolation: isolate;
 }
-.age-gate.hidden { display: none; }
-.age-gate__card {
-  background: var(--paper);
-  max-width: 380px; width: 100%;
-  padding: 36px 28px;
-  border-radius: 16px;
-  text-align: center;
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,.9), transparent 92%);
+  opacity: .45;
+  z-index: -2;
 }
-.age-gate__brand {
-  font-size: 11px; letter-spacing: 3px;
-  color: var(--accent); font-weight: 700; margin-bottom: 22px;
+.blob {
+  position: fixed;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: .16;
+  z-index: -3;
 }
-.age-gate__title {
-  font-size: 22px; font-weight: 500; line-height: 1.3;
-  color: var(--ink); margin-bottom: 12px;
-  font-family: "Times New Roman", Georgia, serif;
-}
-.age-gate__text {
-  font-size: 14px; color: var(--soft);
-  margin-bottom: 26px; line-height: 1.55;
-}
-.age-gate__btn {
-  padding: 14px 18px; border-radius: 10px;
-  border: none; cursor: pointer;
-  font-size: 14px; font-weight: 600;
-  font-family: inherit;
-  display: block; width: 100%; text-decoration: none; text-align: center;
-  margin-bottom: 8px;
-}
-.age-gate__btn--yes { background: var(--ink); color: white; }
-.age-gate__btn--no { background: transparent; color: var(--hint); border: 1px solid var(--line); }
+.blob.one { top: -140px; left: -120px; background: #82A7FF; }
+.blob.two { top: 160px; right: -120px; background: #7CF6C6; }
+.blob.three { bottom: -180px; left: 24%; background: #FFB86B; }
 
-/* ── NAV minimal ── */
+.shell {
+  width: min(100% - 40px, var(--max));
+  margin: 0 auto;
+}
+
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-  padding: 22px 28px;
-  display: flex; justify-content: space-between; align-items: center;
-  background: linear-gradient(180deg, rgba(251,247,242,0.92) 0%, rgba(251,247,242,0) 100%);
-  backdrop-filter: blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(16px);
+  background: rgba(11,16,32,.68);
+  border-bottom: 1px solid rgba(255,255,255,.08);
 }
-.nav__brand {
-  font-weight: 700; font-size: 13px;
-  letter-spacing: 3.5px; color: var(--ink);
-  text-decoration: none;
-}
-.nav__lang {
-  display: flex; gap: 4px;
-  font-size: 11px; color: var(--hint); letter-spacing: 1px;
-}
-.nav__lang a {
-  text-decoration: none; padding: 4px 8px;
-  cursor: pointer;
-}
-.nav__lang a.active { color: var(--accent); font-weight: 600; }
-
-/* ── HERO ultra limpio ── */
-.hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 90px 20px 50px;
-  position: relative;
-  background: var(--paper);
-}
-.hero__eyebrow {
-  font-size: 11px; letter-spacing: 3px;
-  color: var(--accent); font-weight: 600;
-  margin-bottom: 22px;
-  opacity: 0; animation: fadeUp 0.9s 0.2s forwards ease-out;
-}
-.hero__title {
-  font-family: "Times New Roman", Georgia, serif;
-  font-size: clamp(34px, 6.5vw, 56px);
-  font-weight: 500; line-height: 1.05;
-  text-align: center; max-width: 760px;
-  margin-bottom: 50px;
-  letter-spacing: -0.5px;
-  opacity: 0; animation: fadeUp 0.9s 0.45s forwards ease-out;
-}
-.hero__title em {
-  font-style: italic; color: var(--accent);
-}
-
-/* Carrusel hero — marquee horizontal con auto-scroll + drag manual */
-.hero__marquee {
-  width: 100vw;
-  max-width: 100%;
-  margin: 0 calc(-50vw + 50%) 50px;
-  padding: 30px 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
-  cursor: grab;
-  user-select: none;
-  opacity: 0;
-  animation: fadeUp 0.9s 0.7s forwards ease-out;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
-}
-.hero__marquee::-webkit-scrollbar { display: none; }
-.hero__marquee.dragging { cursor: grabbing; }
-.hero__track {
+.nav__inner {
+  width: min(100% - 32px, var(--max));
+  margin: 0 auto;
+  min-height: 76px;
   display: flex;
-  gap: clamp(14px, 1.8vw, 26px);
-  padding: 0 30px;
-  width: max-content;
-}
-.hero__book {
-  width: clamp(110px, 14vw, 165px);
-  aspect-ratio: 2/3;
-  flex-shrink: 0;
-  border-radius: 6px;
-  background: var(--ink);
-  background-size: cover; background-position: center;
-  box-shadow: 0 14px 38px rgba(26,22,34,0.18), 0 4px 12px rgba(26,22,34,0.10);
-  cursor: pointer;
-  transition: transform 0.5s cubic-bezier(.2,.9,.3,1.1), box-shadow 0.4s, filter 0.4s;
-  position: relative;
-  text-decoration: none;
-  display: block;
-  will-change: transform;
-  filter: brightness(0.96);
-}
-.hero__book::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(26,22,34,0.25) 100%);
-  border-radius: 6px;
-  pointer-events: none;
-  transition: opacity 0.3s;
-}
-.hero__book:hover {
-  transform: translateY(-12px) scale(1.06);
-  box-shadow: 0 28px 56px rgba(143,51,34,0.32), 0 12px 24px rgba(26,22,34,0.18);
-  z-index: 2;
-  filter: brightness(1.05);
-}
-.hero__book:hover::after { opacity: 0; }
-.hero__marquee.dragging .hero__book { pointer-events: none; }
-/* Marquee suaviza extremos con mejor gradient */
-.hero__marquee {
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 90%, transparent 100%);
-}
-
-/* Selector línea */
-.hero__selector {
-  display: flex; gap: 14px;
-  opacity: 0; animation: fadeUp 0.9s 1.3s forwards ease-out;
-}
-.hero__sel-btn {
-  padding: 13px 26px;
-  border-radius: 99px;
-  text-decoration: none;
-  font-size: 14px; font-weight: 500;
-  letter-spacing: 0.5px;
-  transition: all 0.25s;
-  cursor: pointer;
-  border: 1px solid var(--ink);
-}
-.hero__sel-btn--primary { background: var(--ink); color: white; }
-.hero__sel-btn--primary:hover { background: var(--accent); border-color: var(--accent); }
-.hero__sel-btn--ghost { background: transparent; color: var(--ink); }
-.hero__sel-btn--ghost:hover { background: var(--ink); color: white; }
-
-/* ── BANDA de marca limpia ── */
-.banda {
-  background: var(--ink); color: var(--paper);
-  padding: 24px 20px;
-  text-align: center;
-  font-size: 13px; letter-spacing: 2px;
-  color: #E8D9C5;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.banda strong { color: #F0C9B5; font-weight: 700; }
-
-/* ── SECCIÓN LÍNEA ── */
-.line {
-  padding: 100px 20px;
-  border-top: 1px solid var(--line);
-  position: relative;
-}
-.line--h { background: var(--paper); }
-.line--m { background: var(--cream); }
-.line__inner {
-  max-width: var(--max); margin: 0 auto;
-}
-.line__head {
-  text-align: center; margin-bottom: 64px;
-}
-.line__kicker {
-  display: inline-block;
-  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--accent); font-weight: 700; margin-bottom: 14px;
-}
-.line__title {
-  font-family: "Times New Roman", Georgia, serif;
-  font-size: clamp(30px, 4.5vw, 44px);
-  font-weight: 500; line-height: 1.1;
-  margin-bottom: 14px; color: var(--ink);
-  letter-spacing: -0.4px;
-}
-.line__sub {
-  font-size: 16px; color: var(--soft);
-  max-width: 540px; margin: 0 auto;
-  line-height: 1.6;
-}
-
-/* Grid de libros (3 + pack) */
-.books {
-  display: grid; gap: 28px;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 720px) {
-  .books { grid-template-columns: repeat(3, 1fr); gap: 32px; }
-}
-.book {
-  cursor: pointer;
-  transition: transform 0.3s cubic-bezier(.2,.9,.3,1.1);
-}
-.book:hover { transform: translateY(-6px); }
-.book__cover-wrap {
-  position: relative;
-  border-radius: 6px;
-  overflow: hidden;
-  background: var(--ink);
-  box-shadow: 0 10px 30px rgba(26,22,34,0.12);
-  transition: box-shadow 0.3s;
-}
-.book:hover .book__cover-wrap { box-shadow: 0 18px 44px rgba(26,22,34,0.22); }
-.book__cover {
-  width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block;
-  transition: transform 0.45s;
-}
-.book:hover .book__cover { transform: scale(1.03); }
-.book__badge {
-  position: absolute; top: 14px; right: 14px;
-  background: var(--accent); color: white;
-  font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
-  padding: 5px 10px; border-radius: 4px;
-  text-transform: uppercase;
-}
-.book__meta {
-  margin-top: 16px;
-  display: flex; justify-content: space-between; align-items: baseline;
-  padding: 0 4px;
-}
-.book__title {
-  font-family: "Times New Roman", Georgia, serif;
-  font-size: 17px; font-weight: 500; color: var(--ink);
-  line-height: 1.3;
-}
-.book__price {
-  font-size: 15px; font-weight: 600; color: var(--accent);
-  flex-shrink: 0;
-}
-.book__hint {
-  margin-top: 6px;
-  font-size: 11px; color: var(--hint); letter-spacing: 0.5px;
-  padding: 0 4px;
-}
-.book__why {
-  margin-top: 12px;
-  padding: 12px 14px;
-  background: rgba(143,51,34,0.06);
-  border-left: 2px solid var(--accent);
-  border-radius: 0 6px 6px 0;
-}
-.book__why-title {
-  font-size: 9.5px; letter-spacing: 1.5px; color: var(--accent);
-  font-weight: 700; text-transform: uppercase; margin-bottom: 6px;
-}
-.book__why ul {
-  list-style: none; font-size: 12.5px; color: var(--ink);
-  line-height: 1.4; display: flex; flex-direction: column; gap: 3px;
-}
-.book__why li::before { content: "→ "; color: var(--accent); font-weight: 700; }
-
-/* ── BANNER PROMO en pack (rojo, anchor de precio agresivo) ── */
-.promo-strip {
-  display: flex; align-items: center; gap: 10px;
-  background: linear-gradient(90deg, #B85540 0%, #8F3322 100%);
-  color: white;
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
-  text-transform: uppercase;
-  width: fit-content;
-  margin-bottom: 16px;
-  animation: promoPulse 2.5s ease-in-out infinite;
-}
-.promo-strip__dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #FFD27F; box-shadow: 0 0 8px #FFD27F;
-  animation: dotPulse 1.5s ease-in-out infinite;
-}
-@keyframes promoPulse {
-  0%,100% { box-shadow: 0 6px 20px rgba(184,85,64,0.3); }
-  50% { box-shadow: 0 8px 28px rgba(184,85,64,0.55); }
-}
-@keyframes dotPulse {
-  0%,100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.85); }
-}
-.pack-spotlight__price-row { align-items: center; }
-.pack-spotlight__amount-promo {
-  font-family: "Times New Roman", serif;
-  font-size: 42px; font-weight: 600; color: #FF6B5C;
-  line-height: 1;
-}
-.pack-spotlight__compare-promo {
-  font-size: 19px; color: #8B7F92; text-decoration: line-through;
-  text-decoration-color: #FF6B5C; text-decoration-thickness: 2px;
-}
-.pack-spotlight__save-badge {
-  display: inline-block;
-  background: #FF6B5C; color: white;
-  padding: 4px 10px; border-radius: 4px;
-  font-size: 11px; font-weight: 700; letter-spacing: 1px;
-}
-
-/* ── COUNTDOWN ── */
-.countdown {
-  display: flex; gap: 12px; justify-content: center;
-  margin: 18px 0 0;
-}
-.countdown__cell {
-  background: rgba(255,255,255,0.08);
-  padding: 8px 12px;
-  border-radius: 6px;
-  text-align: center;
-  min-width: 52px;
-}
-.countdown__num {
-  font-size: 22px; font-weight: 700; color: white;
-  font-family: "Times New Roman", serif; line-height: 1;
-}
-.countdown__lbl {
-  font-size: 9px; color: #C9BFB1; letter-spacing: 1px;
-  text-transform: uppercase; margin-top: 3px;
-}
-
-/* ── RESEÑA destacada en drawer ── */
-.drawer__featured {
-  margin: 24px 0 22px;
-  padding: 18px 18px;
-  background: var(--cream);
-  border-radius: 10px;
-  border-left: 3px solid var(--accent);
-}
-.drawer__featured-stars { color: var(--accent); font-size: 12px; letter-spacing: 2px; margin-bottom: 8px; }
-.drawer__featured-text { font-size: 13.5px; color: var(--ink); line-height: 1.55; font-style: italic; margin-bottom: 8px; }
-.drawer__featured-author { font-size: 11px; color: var(--hint); }
-.drawer__featured-author strong { color: var(--ink); font-style: normal; font-weight: 600; }
-.drawer__featured-tag {
-  position: absolute; top: -6px; right: 14px;
-  background: var(--accent); color: white;
-  font-size: 8px; padding: 2px 6px; border-radius: 3px;
-  letter-spacing: 0.5px;
-}
-.drawer__featured { position: relative; }
-
-/* ── REASEGURADORES / TRUST BAR ── */
-.trust-bar {
-  background: var(--cream);
-  border-top: 1px solid var(--line);
-  padding: 26px 20px;
-  display: flex; justify-content: center; gap: clamp(20px, 5vw, 60px);
-  flex-wrap: wrap;
-  font-size: 12px; color: var(--soft); letter-spacing: 0.8px;
-}
-.trust-bar__item { display: flex; align-items: center; gap: 8px; }
-.trust-bar__item::before {
-  content: ""; width: 18px; height: 18px;
-  border-radius: 50%; background: var(--accent);
-  display: inline-flex; align-items: center; justify-content: center;
-  color: white; font-size: 11px; font-weight: 700;
-}
-.trust-bar__item--access::before { content: "↓"; }
-.trust-bar__item--secure::before { content: "✓"; }
-.trust-bar__item--privacy::before { content: "🔒"; background: transparent; color: var(--accent); font-size: 14px; }
-.trust-bar__item--instant::before { content: "⚡"; background: transparent; color: var(--accent); font-size: 14px; }
-
-/* DEMO marker para popup */
-.ph-marker.demo-marker {
-  background: #FFB347; color: #4A2A00;
-  font-weight: 700;
-}
-
-/* ── BIENVENIDA MODAL premium (con cupón visible) ── */
-.welcome-bg {
-  position: fixed; inset: 0;
-  background: rgba(26,22,34,0); z-index: 115;
-  pointer-events: none; transition: background 0.4s;
-}
-.welcome-bg.open { background: rgba(26,22,34,0.7); pointer-events: auto; backdrop-filter: blur(8px); }
-.welcome {
-  position: fixed; top: 50%; left: 50%;
-  transform: translate(-50%, -45%) scale(0.85);
-  width: min(94%, 420px);
-  background: var(--paper);
-  border-radius: 20px;
-  z-index: 116;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.4s, transform 0.55s cubic-bezier(.34,1.4,.64,1);
-  overflow: hidden;
-  box-shadow: 0 40px 90px rgba(143,51,34,0.4);
-}
-.welcome.open { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
-.welcome__hero {
-  background: linear-gradient(135deg, #8F3322 0%, #2A1F2E 100%);
-  color: white; padding: 36px 28px 24px;
-  text-align: center; position: relative;
-}
-.welcome__close {
-  position: absolute; top: 14px; right: 14px;
-  width: 30px; height: 30px; border-radius: 50%;
-  background: rgba(255,255,255,0.18); border: none; cursor: pointer;
-  color: white; font-size: 14px; z-index: 2;
-}
-.welcome__emoji { font-size: 38px; margin-bottom: 10px; }
-.welcome__kicker { font-size: 10px; letter-spacing: 2.5px; color: #F0C9B5; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
-.welcome__title {
-  font-family: "Times New Roman", serif;
-  font-size: 24px; font-weight: 500; line-height: 1.2;
-  color: white;
-}
-.welcome__body { padding: 24px 28px 26px; text-align: center; }
-.welcome__desc { font-size: 14px; color: var(--soft); line-height: 1.55; margin-bottom: 20px; }
-.welcome__coupon {
-  display: inline-flex; flex-direction: column;
-  background: var(--cream); border: 2px dashed var(--accent);
-  border-radius: 12px; padding: 14px 22px;
-  margin-bottom: 20px; cursor: pointer;
-  transition: transform 0.15s;
-}
-.welcome__coupon:hover { transform: scale(1.04); }
-.welcome__coupon-text { font-size: 10px; letter-spacing: 1.5px; color: var(--accent); font-weight: 700; margin-bottom: 4px; text-transform: uppercase; }
-.welcome__coupon-code { font-family: monospace; font-weight: 700; font-size: 22px; color: var(--ink); letter-spacing: 2px; }
-.welcome__btn {
-  display: block; width: 100%;
-  padding: 15px; background: var(--ink); color: white;
-  text-decoration: none; border-radius: 10px;
-  font-weight: 600; font-size: 14px;
-  transition: background 0.2s;
-}
-.welcome__btn:hover { background: var(--accent); }
-
-/* ── LIVE TICKER (actividad real, datos honestos) ── */
-.live-ticker {
-  position: fixed; bottom: 24px; left: 96px;
-  background: var(--ink); color: white;
-  padding: 10px 16px 10px 36px;
-  border-radius: 99px;
-  font-size: 12px; letter-spacing: 0.4px;
-  box-shadow: 0 12px 26px rgba(26,22,34,0.3);
-  z-index: 80;
-  position: fixed;
-  display: flex; align-items: center; gap: 8px;
-  opacity: 0; transform: translateY(20px);
-  transition: opacity 0.5s, transform 0.5s;
-  max-width: calc(100vw - 196px);
-}
-.live-ticker.show { opacity: 1; transform: translateY(0); }
-.live-ticker::before {
-  content: ""; position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-  width: 10px; height: 10px; border-radius: 50%;
-  background: #2F6B4F; box-shadow: 0 0 8px rgba(47,107,79,0.8);
-  animation: livePulse 1.5s ease-in-out infinite;
-}
-.live-ticker__strong { color: #F0C9B5; font-weight: 700; }
-@media (max-width: 720px) { .live-ticker { display: none; } }
-
-/* ── PULSE en CTAs después de inactividad ── */
-@keyframes ctaPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(143,51,34,0.5); }
-  50% { box-shadow: 0 0 0 12px rgba(143,51,34,0); }
-}
-.book__buy.pulse, .pack-spotlight__btn.pulse, .card__btn.pulse {
-  animation: ctaPulse 2s ease-out infinite;
-}
-
-/* ── TRUST FLOATING BADGE ── */
-.trust-float {
-  position: fixed; right: 96px; bottom: 24px;
-  background: rgba(251,247,242,0.95);
-  backdrop-filter: blur(8px);
-  color: var(--ink);
-  padding: 8px 14px 8px 38px;
-  border-radius: 99px;
-  font-size: 12px; letter-spacing: 0.3px;
-  box-shadow: 0 10px 24px rgba(26,22,34,0.2);
-  border: 1px solid var(--line);
-  z-index: 80;
-  opacity: 0; transform: translateY(20px);
-  transition: opacity 0.5s, transform 0.5s;
-}
-.trust-float.show { opacity: 1; transform: translateY(0); }
-.trust-float::before {
-  content: "★"; position: absolute; left: 14px; top: 50%;
-  transform: translateY(-50%); color: var(--accent); font-size: 14px;
-}
-.trust-float__num { color: var(--accent); font-weight: 700; }
-@media (max-width: 900px) { .trust-float { display: none; } }
-
-/* ── SECCIÓN PAIN AGITATION (ataque a miedos) ── */
-.fears {
-  padding: 80px 20px;
-  background: var(--cream);
-  border-top: 1px solid var(--line);
-}
-.fears__inner { max-width: 1080px; margin: 0 auto; }
-.fears__head { text-align: center; margin-bottom: 50px; }
-.fears__kicker {
-  font-size: 11px; letter-spacing: 3px; color: var(--accent);
-  font-weight: 700; margin-bottom: 14px; text-transform: uppercase;
-}
-.fears__title {
-  font-family: "Times New Roman", serif;
-  font-size: clamp(28px, 4.2vw, 38px);
-  font-weight: 500; line-height: 1.12; color: var(--ink);
-  margin-bottom: 14px;
-}
-.fears__sub {
-  font-size: 15px; color: var(--soft); line-height: 1.6;
-  max-width: 580px; margin: 0 auto;
-}
-.fears__grid {
-  display: grid; gap: 20px;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 720px) { .fears__grid { grid-template-columns: 1fr 1fr; } }
-.fears-col {
-  background: var(--paper);
-  padding: 32px 28px;
-  border-radius: 16px;
-  box-shadow: 0 10px 28px rgba(26,22,34,0.06);
-}
-.fears-col__avatar {
-  display: inline-block;
-  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-  color: white; background: var(--accent);
-  padding: 6px 14px; border-radius: 99px;
-  font-weight: 700; margin-bottom: 18px;
-}
-.fears-col__title {
-  font-family: "Times New Roman", serif;
-  font-size: 22px; font-weight: 500; color: var(--ink);
-  line-height: 1.2; margin-bottom: 18px;
-}
-.fears-col__list {
-  list-style: none; display: flex; flex-direction: column; gap: 12px;
-  margin-bottom: 22px;
-}
-.fears-col__list li {
-  font-size: 14.5px; color: var(--ink); line-height: 1.5;
-  padding-left: 24px; position: relative;
-  font-style: italic;
-}
-.fears-col__list li::before {
-  content: "❝"; position: absolute; left: 0; top: -4px;
-  color: var(--accent); font-size: 22px; font-family: Georgia, serif;
-}
-.fears-col__answer {
-  background: var(--cream);
-  padding: 16px 18px;
-  border-radius: 10px;
-  border-left: 3px solid var(--accent);
-  font-size: 13.5px; color: var(--ink); line-height: 1.55;
-}
-.fears-col__answer strong { color: var(--accent); font-weight: 600; }
-
-/* ── AUTORIDAD AMPLIADA en socials ── */
-.authority-stats {
-  display: grid; gap: 14px;
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 720px; margin: 0 auto 40px;
-}
-@media (min-width: 720px) { .authority-stats { grid-template-columns: repeat(4, 1fr); } }
-.authority-stat {
-  background: rgba(255,255,255,0.05);
-  padding: 22px 16px;
-  border-radius: 12px;
-  text-align: center;
-  border: 1px solid rgba(255,255,255,0.08);
-}
-.authority-stat__num {
-  font-family: "Times New Roman", serif;
-  font-size: 32px; font-weight: 500; color: white;
-  line-height: 1; margin-bottom: 6px;
-}
-.authority-stat__num small { font-size: 18px; opacity: 0.7; }
-.authority-stat__lbl {
-  font-size: 10px; letter-spacing: 1.5px; color: #C9BFB1;
-  text-transform: uppercase; font-weight: 600;
-}
-
-/* ── SECCIÓN POR QUÉ CONFIAR ── */
-.trust {
-  padding: 80px 20px;
-  background: var(--paper);
-  border-top: 1px solid var(--line);
-}
-.trust__inner { max-width: 1080px; margin: 0 auto; }
-.trust__head { text-align: center; margin-bottom: 50px; }
-.trust__kicker {
-  font-size: 11px; letter-spacing: 3px; color: var(--accent);
-  font-weight: 700; margin-bottom: 14px; text-transform: uppercase;
-}
-.trust__title {
-  font-family: "Times New Roman", serif;
-  font-size: clamp(28px, 4.2vw, 38px);
-  font-weight: 500; line-height: 1.12; color: var(--ink);
-}
-.trust__grid {
-  display: grid; gap: 16px;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 720px) { .trust__grid { grid-template-columns: repeat(2, 1fr); gap: 22px; } }
-@media (min-width: 1000px) { .trust__grid { grid-template-columns: repeat(3, 1fr); } }
-.trust-card {
-  background: var(--cream);
-  padding: 28px 26px;
-  border-radius: 14px;
-  border-top: 3px solid var(--accent);
-}
-.trust-card__icon {
-  font-size: 26px; margin-bottom: 12px;
-  width: 44px; height: 44px;
-  background: rgba(143,51,34,0.08);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-}
-.trust-card__title {
-  font-family: "Times New Roman", serif;
-  font-size: 18px; font-weight: 500; color: var(--ink);
-  margin-bottom: 8px;
-}
-.trust-card__desc { font-size: 14px; color: var(--soft); line-height: 1.55; }
-.trust-card__strong { color: var(--accent); font-weight: 600; }
-
-/* ── BADGE GARANTÍA cerca del pack ── */
-.guarantee-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(47,107,79,0.12);
-  color: #2F6B4F;
-  padding: 8px 14px; border-radius: 99px;
-  font-size: 12px; font-weight: 600;
-  margin-top: 14px; margin-bottom: 6px;
-  border: 1px solid rgba(47,107,79,0.25);
-}
-.guarantee-badge::before { content: "🛡"; font-size: 14px; }
-
-/* ── EQUIPO / SOBRE NOSOTROS ── */
-.team {
-  padding: 80px 20px;
-  background: var(--cream);
-  border-top: 1px solid var(--line);
-}
-.team__inner { max-width: 980px; margin: 0 auto; }
-.team__head { text-align: center; margin-bottom: 44px; }
-.team__kicker {
-  font-size: 11px; letter-spacing: 3px; color: var(--accent);
-  font-weight: 700; margin-bottom: 14px; text-transform: uppercase;
-}
-.team__title {
-  font-family: "Times New Roman", serif;
-  font-size: clamp(26px, 4vw, 34px);
-  font-weight: 500; line-height: 1.15; color: var(--ink); margin-bottom: 16px;
-}
-.team__sub {
-  font-size: 15px; color: var(--soft); line-height: 1.6;
-  max-width: 580px; margin: 0 auto;
-}
-.team__grid {
-  display: grid; gap: 18px;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 720px) { .team__grid { grid-template-columns: repeat(3, 1fr); } }
-.team-member {
-  background: var(--paper);
-  padding: 24px 22px;
-  border-radius: 14px;
-  text-align: center;
-  box-shadow: 0 8px 24px rgba(26,22,34,0.06);
-}
-.team-member__avatar {
-  width: 80px; height: 80px;
-  border-radius: 50%;
-  margin: 0 auto 14px;
-  background: var(--ink);
-  background-size: cover; background-position: center top;
-}
-.team-member__name {
-  font-family: "Times New Roman", serif;
-  font-size: 18px; font-weight: 500; color: var(--ink);
-  margin-bottom: 4px;
-}
-.team-member__role {
-  font-size: 11px; letter-spacing: 1.5px; color: var(--accent);
-  font-weight: 700; text-transform: uppercase; margin-bottom: 10px;
-}
-.team-member__bio { font-size: 13px; color: var(--soft); line-height: 1.55; }
-
-/* ── MÉTODOS DE PAGO en footer ── */
-.payments {
-  padding: 30px 20px;
-  background: var(--ink);
-  border-top: 1px solid rgba(255,255,255,0.06);
-  text-align: center;
-}
-.payments__label {
-  font-size: 10px; letter-spacing: 2.5px; color: #B8AC9E;
-  font-weight: 600; text-transform: uppercase; margin-bottom: 14px;
-}
-.payments__icons {
-  display: inline-flex; gap: 14px; align-items: center; flex-wrap: wrap;
-  justify-content: center;
-}
-.payment-icon {
-  height: 28px; padding: 6px 12px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700; color: white;
-  letter-spacing: 1px;
-}
-.payment-icon--shop { background: #5A31F4; }
-.payment-icon--paypal { background: #003087; color: #fff; }
-
-/* ── SECCIÓN CÓMO FUNCIONA ── */
-.how {
-  padding: 80px 20px;
-  background: var(--ink); color: var(--paper);
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.how__inner { max-width: 1080px; margin: 0 auto; }
-.how__head { text-align: center; margin-bottom: 56px; }
-.how__kicker {
-  font-size: 11px; letter-spacing: 3px; color: #F0C9B5;
-  font-weight: 700; margin-bottom: 14px; text-transform: uppercase;
-}
-.how__title {
-  font-family: "Times New Roman", serif;
-  font-size: clamp(28px, 4vw, 38px);
-  font-weight: 500; line-height: 1.12;
-}
-.how__steps {
-  display: grid; gap: 28px;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 720px) { .how__steps { grid-template-columns: repeat(3, 1fr); } }
-.how-step {
-  text-align: center; position: relative;
-  padding: 24px 18px;
-}
-.how-step__num {
-  font-family: "Times New Roman", serif;
-  font-size: 64px; font-weight: 500;
-  color: rgba(240,201,181,0.18);
-  line-height: 1; margin-bottom: -32px;
-  position: relative; z-index: 0;
-}
-.how-step__icon {
-  font-size: 38px; margin-bottom: 14px;
-  position: relative; z-index: 1;
-}
-.how-step__title {
-  font-family: "Times New Roman", serif;
-  font-size: 20px; font-weight: 500;
-  margin-bottom: 10px;
-}
-.how-step__desc { font-size: 14px; color: #C9BFB1; line-height: 1.6; }
-.how__guarantee {
-  margin-top: 56px; padding: 24px 28px;
-  background: rgba(255,255,255,0.04);
-  border-radius: 14px; text-align: center;
-  font-size: 14px; color: #DDD0C2; line-height: 1.6;
-  max-width: 720px; margin-left: auto; margin-right: auto;
-}
-.how__guarantee strong { color: white; }
-
-/* ── LEAD POPUP modal ── */
-.lead-popup-bg {
-  position: fixed; inset: 0;
-  background: rgba(26,22,34,0); z-index: 110;
-  pointer-events: none; transition: background 0.3s;
-}
-.lead-popup-bg.open { background: rgba(26,22,34,0.7); pointer-events: auto; backdrop-filter: blur(6px); }
-.lead-popup {
-  position: fixed; top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(0.92);
-  width: min(94%, 440px);
-  background: var(--paper);
-  border-radius: 18px;
-  padding: 38px 32px 30px;
-  z-index: 111;
-  text-align: center;
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.35s, transform 0.4s cubic-bezier(.34,1.4,.64,1);
-  box-shadow: 0 30px 80px rgba(26,22,34,0.4);
-}
-.lead-popup.open {
-  opacity: 1; pointer-events: auto;
-  transform: translate(-50%, -50%) scale(1);
-}
-.lead-popup__close {
-  position: absolute; top: 14px; right: 14px;
-  width: 32px; height: 32px; border-radius: 50%;
-  background: rgba(26,22,34,0.06); border: none; cursor: pointer;
-  font-size: 16px; color: var(--ink);
-}
-.lead-popup__icon { font-size: 44px; margin-bottom: 14px; }
-.lead-popup__title {
-  font-family: "Times New Roman", serif;
-  font-size: 24px; font-weight: 500; line-height: 1.18;
-  color: var(--ink); margin-bottom: 10px;
-}
-.lead-popup__sub {
-  font-size: 14.5px; color: var(--soft); line-height: 1.55;
-  margin: 0 auto 22px; max-width: 340px;
-}
-.lead-popup__form {
-  display: flex; flex-direction: column; gap: 10px;
-  margin-bottom: 14px;
-}
-.lead-popup__input {
-  padding: 14px 16px; border-radius: 10px;
-  border: 1.5px solid var(--line);
-  font-size: 15px; color: var(--ink);
-  font-family: inherit; outline: none;
-  transition: border-color 0.2s;
-}
-.lead-popup__input:focus { border-color: var(--accent); }
-.lead-popup__btn {
-  padding: 15px 18px; border-radius: 10px;
-  background: var(--accent); color: white;
-  border: none; cursor: pointer;
-  font-size: 15px; font-weight: 600;
-  font-family: inherit;
-  transition: background 0.2s;
-}
-.lead-popup__btn:hover { background: #6F2818; }
-.lead-popup__note { font-size: 11px; color: var(--hint); line-height: 1.45; max-width: 340px; margin: 0 auto; }
-.lead-popup--success { background: linear-gradient(180deg, #E1F5EE 0%, var(--paper) 100%); }
-
-/* ── EXIT INTENT popup (retención de compra) ── */
-.exit-popup-bg {
-  position: fixed; inset: 0;
-  background: rgba(26,22,34,0); z-index: 120;
-  pointer-events: none; transition: background 0.35s;
-}
-.exit-popup-bg.open { background: rgba(26,22,34,0.78); pointer-events: auto; backdrop-filter: blur(8px); }
-.exit-popup {
-  position: fixed; top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(0.88) rotate(-1deg);
-  width: min(94%, 460px);
-  background: var(--paper);
-  border-radius: 18px; padding: 0;
-  z-index: 121; text-align: center;
-  opacity: 0; pointer-events: none;
-  overflow: hidden;
-  transition: opacity 0.4s, transform 0.5s cubic-bezier(.34,1.4,.64,1);
-  box-shadow: 0 40px 90px rgba(143,51,34,0.5);
-}
-.exit-popup.open {
-  opacity: 1; pointer-events: auto;
-  transform: translate(-50%, -50%) scale(1) rotate(0deg);
-}
-.exit-popup__top {
-  background: linear-gradient(135deg, #FF6B5C 0%, #B85540 50%, #8F3322 100%);
-  color: white; padding: 22px 28px 18px;
-  position: relative;
-}
-.exit-popup__close {
-  position: absolute; top: 12px; right: 14px;
-  width: 30px; height: 30px; border-radius: 50%;
-  background: rgba(255,255,255,0.18); border: none; cursor: pointer;
-  color: white; font-size: 14px;
-}
-.exit-popup__kicker {
-  font-size: 11px; letter-spacing: 2.5px; font-weight: 700;
-  text-transform: uppercase; opacity: 0.9; margin-bottom: 8px;
-}
-.exit-popup__title {
-  font-family: "Times New Roman", serif;
-  font-size: 26px; font-weight: 500; line-height: 1.18;
-}
-.exit-popup__body {
-  padding: 24px 28px 28px;
-}
-.exit-popup__desc {
-  font-size: 14.5px; color: var(--soft);
-  line-height: 1.55; margin-bottom: 18px;
-}
-.exit-popup__price-row {
-  display: flex; justify-content: center; align-items: baseline; gap: 12px;
-  margin-bottom: 20px;
-}
-.exit-popup__new {
-  font-family: "Times New Roman", serif;
-  font-size: 38px; font-weight: 600; color: #FF6B5C;
-}
-.exit-popup__old {
-  font-size: 16px; color: var(--hint); text-decoration: line-through;
-  text-decoration-color: #FF6B5C; text-decoration-thickness: 2px;
-}
-.exit-popup__code {
-  display: inline-block;
-  font-family: monospace; font-weight: 700;
-  font-size: 16px; color: white;
-  background: var(--ink); padding: 8px 16px;
-  border-radius: 6px; letter-spacing: 2px;
-  margin-bottom: 16px;
-  cursor: pointer;
-}
-.exit-popup__btn {
-  display: block; width: 100%;
-  padding: 16px 18px;
-  background: var(--accent); color: white;
-  text-decoration: none; border-radius: 10px;
-  font-weight: 600; font-size: 15px;
-  transition: background 0.2s;
-}
-.exit-popup__btn:hover { background: #6F2818; }
-.exit-popup__no {
-  margin-top: 10px; font-size: 11px; color: var(--hint);
-  background: none; border: none; cursor: pointer;
-  text-decoration: underline;
-}
-
-/* Botón flotante pequeño para reabrir popup */
-.lead-reopen {
-  position: fixed; bottom: 96px; right: 24px;
-  background: var(--accent); color: white;
-  width: 44px; height: 44px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px; cursor: pointer; border: none;
-  box-shadow: 0 8px 22px rgba(143,51,34,0.35);
-  z-index: 80; transition: transform 0.2s;
-}
-.lead-reopen:hover { transform: scale(1.08); }
-
-/* ── BOTÓN COMPRAR directo en card ── */
-.book__buy {
-  display: block; text-align: center;
-  margin-top: 10px;
-  padding: 10px 14px;
-  background: var(--accent); color: white;
-  text-decoration: none; border-radius: 8px;
-  font-size: 13px; font-weight: 600;
-  transition: background 0.2s;
-}
-.book__buy:hover { background: #6F2818; }
-
-/* ── LEAD MAGNET BAR (top) ── */
-.lead-bar {
-  background: var(--ink); color: var(--paper);
-  padding: 12px 16px;
-  display: flex; align-items: center; justify-content: center;
-  gap: 14px; flex-wrap: wrap;
-  font-size: 13px; line-height: 1.3;
-  position: relative;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-.lead-bar__text { display: flex; align-items: center; gap: 8px; }
-.lead-bar__text strong { color: #F0C9B5; }
-.lead-bar__form {
-  display: flex; gap: 6px;
   align-items: center;
-  background: rgba(255,255,255,0.08);
-  border-radius: 8px;
-  padding: 4px 4px 4px 14px;
-  width: 100%; max-width: 360px;
+  justify-content: space-between;
+  gap: 16px;
 }
-.lead-bar__input {
-  background: transparent; border: none; outline: none;
-  color: white; font-size: 13px;
-  flex-grow: 1; font-family: inherit;
-  min-width: 0;
-}
-.lead-bar__input::placeholder { color: #B8AC9E; }
-.lead-bar__btn {
-  background: var(--accent); color: white;
-  border: none; border-radius: 6px;
-  padding: 8px 14px; cursor: pointer;
-  font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
-  font-family: inherit;
-  white-space: nowrap;
-  transition: background 0.2s;
-}
-.lead-bar__btn:hover { background: #B85540; }
-.lead-bar__close {
-  position: absolute; right: 12px; top: 50%;
-  transform: translateY(-50%);
-  background: transparent; border: none;
-  color: rgba(255,255,255,0.5); cursor: pointer;
-  font-size: 16px; padding: 4px 8px;
-}
-.lead-bar__close:hover { color: white; }
-.lead-bar--success {
-  background: #2F6B4F;
-}
-@media (max-width: 600px) {
-  .lead-bar { font-size: 12px; padding: 10px 36px 10px 12px; }
-  .lead-bar__close { right: 6px; }
-}
-
-/* Ajuste para que NAV no se sobreponga */
-body.with-leadbar .nav { top: 0; position: sticky; }
-
-/* ── BANDA LIVE STATUS (contador honest) ── */
-.live-status {
-  background: var(--cream);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 14px 20px;
-  display: flex; align-items: center; justify-content: center;
-  gap: 22px; flex-wrap: wrap;
-  font-size: 12px; color: var(--soft); letter-spacing: 0.5px;
-}
-.live-status__item { display: flex; align-items: center; gap: 7px; }
-.live-status__dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #2F6B4F; box-shadow: 0 0 8px rgba(47,107,79,0.6);
-  animation: livePulse 1.6s ease-in-out infinite;
-}
-.live-status__num {
-  color: var(--ink); font-weight: 700; font-family: "Times New Roman", serif;
-  font-size: 15px;
-}
-@keyframes livePulse {
-  0%,100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
-}
-
-/* ── WHATSAPP NOTIFICACIONES tipo celular (esquina superior derecha) ── */
-.wa-notif {
-  position: fixed;
-  top: 84px; right: 16px;
-  background: white;
-  border-radius: 14px;
-  padding: 12px 38px 12px 58px;
-  width: min(92%, 330px);
-  box-shadow: 0 20px 44px rgba(26,22,34,0.22);
-  cursor: pointer;
-  transform: translateX(120%); opacity: 0;
-  transition: transform 0.55s cubic-bezier(.34,1.4,.64,1), opacity 0.45s;
-  z-index: 95;
-  text-decoration: none;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  display: block;
-}
-.wa-notif.show { transform: translateX(0); opacity: 1; }
-.wa-notif__avatar {
-  position: absolute;
-  left: 11px; top: 50%; transform: translateY(-50%);
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  background-size: cover; background-position: center top;
-  background-color: #1A1622;
-  border: 2px solid white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-.wa-notif__avatar::after {
-  content: ""; position: absolute;
-  right: -3px; bottom: -3px;
-  width: 16px; height: 16px;
-  background: #25D366;
-  border-radius: 50%;
-  border: 2px solid white;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.9 1.1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.3-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.2-.5.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.2-1 1-1 2.5 0 1.4 1.1 2.8 1.2 3 .1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.3.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3z'/></svg>");
-  background-size: 11px 11px;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.wa-notif__close {
-  position: absolute; top: 4px; right: 6px;
-  background: transparent; border: none; cursor: pointer;
-  color: #999; font-size: 16px; padding: 4px 8px;
-}
-.wa-notif__head {
-  display: flex; justify-content: space-between; align-items: baseline;
-  margin-bottom: 2px;
-}
-.wa-notif__name { font-size: 13px; font-weight: 700; color: #075E54; }
-.wa-notif__time { font-size: 10px; color: #999; }
-.wa-notif__msg {
-  font-size: 13px; color: #2A2A2A; line-height: 1.4;
-  word-wrap: break-word;
-}
-
-@media (max-width: 600px) {
-  .wa-notif { right: 8px; left: 8px; top: 76px; width: auto; max-width: none; }
-}
-
-/* ── WHATSAPP FAB ── */
-.wa-fab {
-  position: fixed; bottom: 24px; left: 24px;
-  width: 60px; height: 60px;
-  border-radius: 50%;
-  background: #25D366; color: white;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; z-index: 85;
-  box-shadow: 0 12px 32px rgba(37,211,102,0.4);
-  text-decoration: none;
-  transition: transform 0.2s;
-  animation: waBounce 3s ease-in-out infinite;
-}
-.wa-fab:hover { transform: scale(1.08); }
-.wa-fab svg { width: 30px; height: 30px; }
-.wa-fab__label {
-  position: absolute; right: -8px; top: -8px;
-  background: var(--accent); color: white;
-  font-size: 10px; font-weight: 700; padding: 3px 7px;
-  border-radius: 10px; letter-spacing: 0.5px;
-  white-space: nowrap;
-}
-@keyframes waBounce {
-  0%, 90%, 100% { transform: translateY(0); }
-  93% { transform: translateY(-6px); }
-  96% { transform: translateY(0); }
-}
-
-/* ── SECCIÓN INTERACTIVA: raspadito + quiz ── */
-.play {
-  padding: 80px 20px;
-  background: linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
-  border-top: 1px solid var(--line);
-}
-.play__inner { max-width: 1080px; margin: 0 auto; }
-.play__head { text-align: center; margin-bottom: 50px; }
-.play__kicker {
-  font-size: 11px; letter-spacing: 3px; color: var(--accent);
-  font-weight: 700; margin-bottom: 14px; text-transform: uppercase;
-}
-.play__title {
-  font-family: "Times New Roman", serif;
-  font-size: clamp(28px, 4.2vw, 38px);
-  font-weight: 500; line-height: 1.15; color: var(--ink);
-  margin-bottom: 12px;
-}
-.play__sub { font-size: 15px; color: var(--soft); max-width: 580px; margin: 0 auto; }
-
-.play__grid {
-  display: grid; gap: 26px;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 780px) { .play__grid { grid-template-columns: 1fr 1fr; } }
-
-.scratch-card, .quiz-card {
-  background: var(--paper);
-  border-radius: 16px;
-  padding: 30px 28px;
-  text-align: center;
-  box-shadow: 0 14px 36px rgba(26,22,34,0.10);
-  display: flex; flex-direction: column;
-  position: relative; overflow: hidden;
-}
-.scratch-card__title, .quiz-card__title {
-  font-family: "Times New Roman", serif;
-  font-size: 22px; font-weight: 500;
-  color: var(--ink); margin-bottom: 8px;
-}
-.scratch-card__sub, .quiz-card__sub {
-  font-size: 13px; color: var(--soft);
-  margin-bottom: 22px;
-}
-.scratch-card__area {
-  position: relative;
-  width: 260px; height: 160px;
-  margin: 0 auto 22px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #B85540 0%, #8F3322 100%);
-  cursor: crosshair;
-}
-.scratch-card__prize {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  background: var(--cream);
-  border-radius: 12px;
-  padding: 16px;
-}
-.scratch-card__prize-icon { font-size: 30px; margin-bottom: 6px; }
-.scratch-card__prize-text { font-size: 11px; color: var(--soft); margin-bottom: 4px; letter-spacing: 0.5px; }
-.scratch-card__prize-code {
-  font-family: monospace; font-weight: 700;
-  font-size: 20px; color: var(--accent);
-  background: rgba(143,51,34,0.1); padding: 6px 14px;
-  border-radius: 6px; letter-spacing: 1.5px;
-}
-.scratch-card__canvas {
-  position: absolute; inset: 0;
-  border-radius: 12px;
-  cursor: crosshair;
-  touch-action: none;
-}
-.scratch-card__hint {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-weight: 700; letter-spacing: 1.5px;
-  font-size: 13px; text-transform: uppercase;
-  pointer-events: none;
-  animation: scratchPulse 1.8s ease-in-out infinite;
-}
-@keyframes scratchPulse { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
-.scratch-card__btn {
-  display: inline-block; padding: 12px 22px;
-  background: var(--ink); color: white;
-  text-decoration: none; border-radius: 8px;
-  font-weight: 600; font-size: 13px;
-  margin-top: 6px;
-  opacity: 0; transition: opacity 0.4s;
-}
-.scratch-card__btn.show { opacity: 1; }
-
-/* ── TICKET cupón flotante (aparece tras raspar) ── */
-.coupon-ticket {
-  position: absolute; left: 50%; top: 50%;
-  transform: translate(-50%, -50%) scale(0.6) rotate(-6deg);
-  opacity: 0; pointer-events: none;
-  background: linear-gradient(135deg, #FBF7F2 0%, #F3ECE2 100%);
-  border: 2px dashed var(--accent);
-  border-radius: 14px;
-  padding: 20px 26px 18px;
-  min-width: 240px;
-  text-align: center;
-  z-index: 5;
-  box-shadow: 0 20px 50px rgba(143,51,34,0.35);
-  transition: transform 0.6s cubic-bezier(.34,1.56,.64,1), opacity 0.4s;
-}
-.coupon-ticket.show {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1) rotate(-2deg);
-  pointer-events: auto;
-  animation: ticketWiggle 3.5s ease-in-out 0.8s infinite;
-}
-.coupon-ticket::before, .coupon-ticket::after {
-  content: ""; position: absolute;
-  width: 16px; height: 16px;
-  background: var(--cream);
-  border-radius: 50%;
-  top: 50%; transform: translateY(-50%);
-  box-shadow: inset 0 0 0 1px var(--accent);
-}
-.coupon-ticket::before { left: -10px; }
-.coupon-ticket::after { right: -10px; }
-.coupon-ticket__kicker {
-  font-size: 9px; letter-spacing: 2.5px; color: var(--accent);
-  font-weight: 700; text-transform: uppercase; margin-bottom: 4px;
-}
-.coupon-ticket__title {
-  font-family: "Times New Roman", serif;
-  font-size: 18px; color: var(--ink); margin-bottom: 10px;
-  font-weight: 500;
-}
-.coupon-ticket__code {
-  display: block;
-  font-family: monospace; font-weight: 700;
-  font-size: 22px; color: var(--accent);
-  background: rgba(143,51,34,0.10);
-  padding: 8px 14px; border-radius: 6px;
-  letter-spacing: 2px;
-  margin-bottom: 8px;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-.coupon-ticket__code:hover { background: rgba(143,51,34,0.18); }
-.coupon-ticket__copy-hint { font-size: 10px; color: var(--hint); letter-spacing: 0.5px; }
-@keyframes ticketWiggle {
-  0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(-2deg); }
-  50% { transform: translate(-50%, -52%) scale(1.02) rotate(1deg); }
-}
-
-/* QUIZ */
-.quiz-card__progress {
-  height: 4px; background: var(--line);
-  border-radius: 2px; margin-bottom: 22px;
-  overflow: hidden;
-}
-.quiz-card__progress-bar {
-  height: 100%; background: var(--accent);
-  width: 0%; transition: width 0.4s;
-}
-.quiz-card__question {
-  font-size: 16px; font-weight: 600; color: var(--ink);
-  line-height: 1.4; margin-bottom: 18px; min-height: 50px;
-}
-.quiz-card__options {
-  display: flex; flex-direction: column; gap: 8px;
-  margin-bottom: 18px;
-}
-.quiz-card__opt {
-  background: var(--cream); color: var(--ink);
-  padding: 12px 16px; border-radius: 10px;
-  cursor: pointer; border: 2px solid transparent;
-  font-size: 14px; font-family: inherit;
-  text-align: left; transition: all 0.2s;
-}
-.quiz-card__opt:hover { background: var(--paper); border-color: var(--accent); }
-.quiz-card__result {
-  text-align: center; padding: 20px 0;
-}
-.quiz-card__result-kicker { font-size: 11px; letter-spacing: 2px; color: var(--accent); font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
-.quiz-card__result-title { font-family: "Times New Roman", serif; font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 12px; }
-.quiz-card__result-desc { font-size: 14px; color: var(--soft); margin-bottom: 18px; line-height: 1.5; }
-.quiz-card__result-btn {
-  display: inline-block; padding: 14px 24px;
-  background: var(--accent); color: white;
-  text-decoration: none; border-radius: 10px;
-  font-weight: 600; font-size: 14px;
-}
-.quiz-card__restart {
-  display: inline-block; margin-top: 12px;
-  font-size: 12px; color: var(--hint);
-  background: none; border: none; cursor: pointer;
-  text-decoration: underline;
-}
-
-/* ── CARRITO flotante ── */
-.cart-fab {
-  position: fixed; bottom: 24px; right: 24px;
-  width: 60px; height: 60px;
-  border-radius: 50%;
-  background: var(--ink); color: white;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; z-index: 85;
-  box-shadow: 0 12px 32px rgba(26,22,34,0.35);
-  border: none; transition: transform 0.2s, background 0.2s;
-  font-size: 22px;
-}
-.cart-fab:hover { transform: scale(1.06); background: var(--accent); }
-.cart-fab__count {
-  position: absolute; top: -4px; right: -4px;
-  background: var(--accent); color: white;
-  min-width: 22px; height: 22px; border-radius: 11px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700;
-  padding: 0 6px;
-}
-.cart-fab__count.hidden { display: none; }
-
-.cart-drawer-bg {
-  position: fixed; inset: 0;
-  background: rgba(26,22,34,0); z-index: 95;
-  pointer-events: none;
-  transition: background 0.35s;
-}
-.cart-drawer-bg.open { background: rgba(26,22,34,0.65); pointer-events: auto; backdrop-filter: blur(4px); }
-.cart-drawer {
-  position: fixed; right: 0; top: 0; bottom: 0;
-  width: min(96%, 420px);
-  background: var(--paper); z-index: 96;
-  transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(.4,.0,.2,1);
-  display: flex; flex-direction: column;
-}
-.cart-drawer.open { transform: translateX(0); }
-.cart-drawer__head {
-  padding: 22px 24px;
-  border-bottom: 1px solid var(--line);
-  display: flex; justify-content: space-between; align-items: center;
-}
-.cart-drawer__title {
-  font-family: "Times New Roman", serif;
-  font-size: 22px; font-weight: 500;
-}
-.cart-drawer__close {
-  width: 32px; height: 32px; border-radius: 50%;
-  background: rgba(26,22,34,0.06); border: none; cursor: pointer;
-  font-size: 14px;
-}
-.cart-drawer__body { flex-grow: 1; overflow-y: auto; padding: 18px 22px; }
-.cart-empty {
-  text-align: center; color: var(--hint);
-  font-size: 14px; padding: 60px 20px;
-}
-.cart-item {
-  display: flex; gap: 14px; padding: 14px 0;
-  border-bottom: 1px solid var(--line);
-}
-.cart-item__img { width: 58px; aspect-ratio: 2/3; object-fit: cover; border-radius: 4px; background: var(--ink); }
-.cart-item__info { flex-grow: 1; }
-.cart-item__title { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 4px; }
-.cart-item__price { font-size: 13px; color: var(--accent); font-weight: 600; }
-.cart-item__remove {
-  background: none; border: none; cursor: pointer;
-  color: var(--hint); font-size: 12px; text-decoration: underline; margin-top: 6px; padding: 0;
-}
-.cart-drawer__foot {
-  border-top: 1px solid var(--line);
-  padding: 22px 24px;
-  background: var(--cream);
-}
-.cart-drawer__total {
-  display: flex; justify-content: space-between; align-items: baseline;
-  margin-bottom: 16px;
-  font-size: 14px; color: var(--soft);
-}
-.cart-drawer__total strong { font-size: 22px; color: var(--ink); font-family: "Times New Roman", serif; }
-.cart-drawer__checkout {
-  display: block; width: 100%; padding: 16px;
-  background: var(--accent); color: white;
-  text-decoration: none; text-align: center;
-  border-radius: 10px; font-weight: 600; font-size: 15px;
-  transition: background 0.2s;
-}
-.cart-drawer__checkout:hover { background: #6F2818; }
-.cart-drawer__note { text-align: center; font-size: 11px; color: var(--hint); margin-top: 10px; }
-
-/* ── BANNER URGENTE en drawer (rojo pulsante) ── */
-.drawer__urgent {
-  background: linear-gradient(90deg, #FF6B5C 0%, #B85540 50%, #8F3322 100%);
-  color: white;
-  padding: 14px 18px;
-  display: flex; align-items: center; gap: 12px;
-  position: sticky; top: 0; z-index: 3;
-  box-shadow: 0 6px 18px rgba(143,51,34,0.35);
-  animation: urgentPulse 2s ease-in-out infinite;
-}
-.drawer__urgent-icon {
-  width: 32px; height: 32px; border-radius: 50%;
-  background: rgba(255,255,255,0.18);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px; flex-shrink: 0;
-}
-.drawer__urgent-text { flex-grow: 1; }
-.drawer__urgent-title { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 2px; }
-.drawer__urgent-sub { font-size: 11px; opacity: 0.95; }
-.drawer__urgent-time {
-  background: rgba(0,0,0,0.25); padding: 8px 12px;
-  border-radius: 6px;
-  font-family: "Times New Roman", serif;
-  font-size: 18px; font-weight: 700; letter-spacing: 1px;
-  min-width: 70px; text-align: center;
-}
-@keyframes urgentPulse {
-  0%,100% { box-shadow: 0 6px 18px rgba(143,51,34,0.35); }
-  50% { box-shadow: 0 8px 28px rgba(255,107,92,0.6); }
-}
-.drawer__coupon {
-  margin: 0 0 18px;
-  padding: 12px 14px;
-  background: var(--cream);
-  border: 1.5px dashed var(--accent);
-  border-radius: 8px;
-  display: flex; align-items: center; gap: 12px;
-}
-.drawer__coupon-icon { font-size: 18px; color: var(--accent); }
-.drawer__coupon-text { font-size: 13px; color: var(--ink); line-height: 1.4; }
-.drawer__coupon-code {
-  font-family: monospace; font-weight: 700; color: var(--accent);
-  background: rgba(143,51,34,0.1); padding: 2px 8px; border-radius: 4px;
-  font-size: 13px;
-}
-
-/* ── DRAWER libro: secciones extra ── */
-.drawer__section {
-  margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--line);
-}
-.drawer__section h4 {
-  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--accent); font-weight: 700; margin-bottom: 12px;
-}
-.drawer__chapters {
-  list-style: none; display: flex; flex-direction: column; gap: 8px;
-  font-size: 13.5px; color: var(--ink); line-height: 1.45;
-}
-.drawer__chapters li {
-  padding-left: 24px; position: relative;
-}
-.drawer__chapters li::before {
-  content: counter(ch);
-  counter-increment: ch;
-  position: absolute; left: 0; top: 0;
-  width: 18px; height: 18px; border-radius: 50%;
-  background: var(--accent); color: white;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px; font-weight: 700;
-}
-.drawer__chapters { counter-reset: ch; }
-.drawer__forwho {
-  display: grid; gap: 10px; font-size: 13.5px; color: var(--ink); line-height: 1.45;
-}
-.drawer__forwho-row { display: flex; gap: 10px; align-items: flex-start; }
-.drawer__forwho-row::before { content: "✓"; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
-.drawer__forwho-row--not { color: var(--hint); }
-.drawer__forwho-row--not::before { content: "×"; color: var(--hint); }
-.drawer__format {
-  background: var(--cream); padding: 14px 16px; border-radius: 8px;
-  font-size: 13px; color: var(--ink); line-height: 1.55;
-}
-.drawer__format strong { color: var(--accent); }
-.drawer__btns { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; margin-top: 4px; }
-.drawer__btn--add {
-  background: transparent; color: var(--ink); border: 2px solid var(--ink);
-  padding: 15px 18px; border-radius: 10px; cursor: pointer;
-  font-size: 14px; font-weight: 600; font-family: inherit;
-  transition: all 0.2s;
-}
-.drawer__btn--add:hover { background: var(--ink); color: white; }
-.drawer__btn--buy {
-  display: block; padding: 17px 18px;
-  background: var(--accent); color: white;
-  text-decoration: none; text-align: center;
-  border-radius: 10px; font-weight: 600; font-size: 14px;
-}
-.drawer__btn--buy:hover { background: #6F2818; }
-
-/* ── FOOTER mejorado con redes ── */
-.socials-wall {
-  padding: 80px 20px;
-  background: var(--ink); color: var(--paper);
-}
-.socials-wall__inner { max-width: 1100px; margin: 0 auto; }
-.socials-wall__head { text-align: center; margin-bottom: 50px; }
-.socials-wall__kicker {
-  font-size: 11px; letter-spacing: 3px; color: #F0C9B5;
-  font-weight: 700; margin-bottom: 14px; text-transform: uppercase;
-}
-.socials-wall__title {
-  font-family: "Times New Roman", serif;
-  font-size: clamp(26px, 4vw, 36px); font-weight: 500;
-  line-height: 1.15;
-}
-.socials-wall__grid {
-  display: grid; gap: 14px;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 600px) { .socials-wall__grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 980px) { .socials-wall__grid { grid-template-columns: 1fr 1fr 1fr 1fr; } }
-.socials-group {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 12px;
-  padding: 22px 22px;
-}
-.socials-group__title {
-  font-size: 13px; font-weight: 700; color: #F0C9B5;
-  letter-spacing: 1.5px; margin-bottom: 14px;
-}
-.socials-group__list {
-  list-style: none; display: flex; flex-direction: column; gap: 10px;
-}
-.socials-group__list a {
-  color: #C9BFB1; text-decoration: none;
-  font-size: 13px; line-height: 1.3;
-  transition: color 0.2s;
-  display: flex; align-items: center; gap: 8px;
-}
-.socials-group__list a:hover { color: white; }
-.socials-group__list a::before {
-  content: "→"; color: var(--accent);
-}
-
-/* ── PACK destacado ── */
-.pack-spotlight {
-  margin-top: 80px;
-  max-width: 940px; margin-left: auto; margin-right: auto;
-  background: var(--ink); color: var(--paper);
-  border-radius: 18px;
-  overflow: hidden;
-  display: grid; grid-template-columns: 1fr;
-  position: relative;
-}
-@media (min-width: 720px) {
-  .pack-spotlight { grid-template-columns: 320px 1fr; }
-}
-.pack-spotlight__img {
-  position: relative; overflow: hidden;
-}
-.pack-spotlight__img img {
-  width: 100%; height: 100%; object-fit: cover;
-  aspect-ratio: 2/3;
-  transition: transform 0.6s;
-}
-.pack-spotlight:hover .pack-spotlight__img img { transform: scale(1.05); }
-.pack-spotlight__body {
-  padding: 40px 36px;
-  display: flex; flex-direction: column; justify-content: center;
-}
-.pack-spotlight__badge {
-  display: inline-block; width: fit-content;
-  background: var(--accent); color: white;
-  font-size: 11px; font-weight: 700; letter-spacing: 2px;
-  padding: 6px 12px; border-radius: 4px;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-}
-.pack-spotlight__title {
-  font-family: "Times New Roman", Georgia, serif;
-  font-size: clamp(26px, 3.2vw, 34px);
-  font-weight: 500; line-height: 1.12;
-  margin-bottom: 14px;
-}
-.pack-spotlight__desc {
-  font-size: 15px; color: #C9BFB1; line-height: 1.6;
-  margin-bottom: 22px;
-}
-.pack-spotlight__price-row {
-  display: flex; align-items: baseline; gap: 12px;
-  margin-bottom: 22px;
-}
-.pack-spotlight__amount { font-size: 36px; font-weight: 600; color: white; font-family: "Times New Roman", serif; }
-.pack-spotlight__compare { font-size: 16px; color: #8B7F92; text-decoration: line-through; }
-.pack-spotlight__save { font-size: 11px; color: #F0C9B5; font-weight: 600; letter-spacing: 1px; }
-.pack-spotlight__btn {
-  display: inline-block; padding: 16px 30px;
-  background: var(--accent); color: white;
-  text-decoration: none; border-radius: 10px;
-  font-weight: 600; font-size: 15px; letter-spacing: 0.3px;
-  transition: background 0.2s, transform 0.15s;
-  text-align: center;
-  width: fit-content;
-}
-.pack-spotlight__btn:hover { background: var(--accent-soft); transform: translateY(-2px); }
-
-/* ── RESEÑAS ── */
-.reviews {
-  padding: 90px 20px;
-  background: var(--paper);
-  border-top: 1px solid var(--line);
-}
-.reviews__inner { max-width: 980px; margin: 0 auto; }
-.reviews__head { text-align: center; margin-bottom: 50px; }
-.reviews__kicker {
-  font-size: 11px; letter-spacing: 3px; color: var(--accent);
-  font-weight: 700; margin-bottom: 12px; text-transform: uppercase;
-}
-.reviews__title {
-  font-family: "Times New Roman", Georgia, serif;
-  font-size: clamp(26px, 4vw, 36px);
-  font-weight: 500; line-height: 1.15;
-  color: var(--ink);
-}
-/* Carrusel reseñas auto-scroll no-arrastrable */
-.reviews__marquee {
-  width: 100vw;
-  max-width: 100%;
-  margin: 0 calc(-50vw + 50%);
-  padding: 12px 0;
-  overflow: hidden;
-  position: relative;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
-  pointer-events: none;
-}
-.reviews__track {
-  display: flex;
-  gap: 20px;
-  padding: 0 24px;
-  width: max-content;
-  animation: reviewsScroll 60s linear infinite;
-}
-.reviews__marquee:hover .reviews__track { animation-play-state: paused; }
-@keyframes reviewsScroll {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
-}
-.review {
-  background: var(--cream);
-  padding: 26px 24px;
-  border-radius: 12px;
-  display: flex; flex-direction: column;
-  width: 320px; flex-shrink: 0;
-  position: relative;
-  pointer-events: auto;
-}
-.review__stars {
-  color: var(--accent); font-size: 13px; letter-spacing: 2px;
-  margin-bottom: 14px;
-}
-.review__text {
-  font-size: 15px; color: var(--ink); line-height: 1.6;
-  font-style: italic; flex-grow: 1; margin-bottom: 18px;
-  text-align: center;
-}
-.review__stars { text-align: center; }
-.review__author {
-  font-size: 12px; color: var(--hint); letter-spacing: 0.5px;
-  text-align: center;
-}
-.review__author strong { color: var(--ink); font-weight: 600; font-style: normal; }
-.review__placeholder {
-  position: absolute; top: 8px; right: 8px;
-  background: var(--accent); color: white;
-  font-size: 9px; padding: 3px 6px; border-radius: 3px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-.review { position: relative; }
-
-/* ── BRAND footer ── */
 .brand {
-  padding: 90px 20px;
-  background: var(--ink); color: var(--paper);
-  text-align: center;
-}
-.brand__kicker {
-  font-size: 11px; letter-spacing: 3px; color: #F0C9B5;
-  font-weight: 700; margin-bottom: 14px; text-transform: uppercase;
-}
-.brand__h2 {
-  font-family: "Times New Roman", Georgia, serif;
-  font-size: clamp(26px, 4vw, 34px);
-  font-weight: 500; line-height: 1.2;
-  margin-bottom: 20px;
-  max-width: 680px; margin-left: auto; margin-right: auto;
-}
-.brand__p {
-  font-size: 15px; color: #C9BFB1; line-height: 1.65;
-  max-width: 580px; margin: 0 auto;
-}
-.brand__socials {
-  margin-top: 28px;
-  display: flex; gap: 22px; justify-content: center;
-  font-size: 12px; color: #B8AC9E; letter-spacing: 1.5px;
-}
-.brand__socials a { text-decoration: none; padding: 4px 0; border-bottom: 1px solid #4A4356; }
-
-/* ── FOOTER ── */
-.footer {
-  padding: 36px 20px;
-  background: #100D17; color: #6B6478;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
   font-size: 12px;
 }
-.footer__brand { color: var(--accent); font-weight: 700; margin-bottom: 8px; letter-spacing: 2px; }
-.footer__line { margin: 4px 0; }
-.footer__line a { color: #8B7F92; }
+.brand__mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: #08101f;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 10px 24px rgba(130,167,255,.28);
+}
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.nav__links a:hover { color: var(--text); }
+.nav__cta {
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(124,246,198,.35);
+  background: rgba(124,246,198,.08);
+  color: var(--text);
+  font-weight: 600;
+}
 
-/* ── DRAWER (modal de detalle de libro) ── */
-.drawer-bg {
-  position: fixed; inset: 0;
-  background: rgba(26,22,34,0); z-index: 100;
-  pointer-events: none;
-  transition: background 0.35s;
+.hero {
+  padding: 72px 0 56px;
 }
-.drawer-bg.open { background: rgba(26,22,34,0.65); pointer-events: auto; backdrop-filter: blur(4px); }
-.drawer {
-  position: fixed; right: 0; top: 0; bottom: 0;
-  width: min(96%, 480px);
-  background: var(--paper);
-  z-index: 101;
-  transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(.4,.0,.2,1);
-  overflow-y: auto;
-  display: flex; flex-direction: column;
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 32px;
+  align-items: center;
 }
-.drawer.open { transform: translateX(0); }
-.drawer__close {
-  position: absolute; top: 16px; right: 16px;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  background: rgba(26,22,34,0.06);
-  border: none; cursor: pointer;
-  font-size: 18px; color: var(--ink);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 2;
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 999px;
+  color: var(--muted);
+  background: rgba(255,255,255,.03);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
 }
-.drawer__cover {
-  width: 100%; aspect-ratio: 2/3; object-fit: cover;
-  background: var(--ink); display: block;
+.hero h1 {
+  margin: 18px 0 18px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 6vw, 5.9rem);
+  line-height: .95;
+  letter-spacing: -0.06em;
+  max-width: 10ch;
 }
-.drawer__body { padding: 28px 28px 100px; flex-grow: 1; }
-.drawer__kicker {
-  font-size: 10px; letter-spacing: 2.5px; color: var(--accent);
-  font-weight: 700; margin-bottom: 10px; text-transform: uppercase;
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
 }
-.drawer__title {
-  font-family: "Times New Roman", Georgia, serif;
-  font-size: 28px; font-weight: 500; line-height: 1.15;
-  color: var(--ink); margin-bottom: 14px;
+.hero p {
+  margin: 0;
+  max-width: 58ch;
+  color: var(--muted);
+  font-size: 1.06rem;
+  line-height: 1.75;
 }
-.drawer__desc {
-  font-size: 15px; color: var(--soft); line-height: 1.7;
-  margin-bottom: 22px;
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
 }
-.drawer__what {
+.btn {
+  padding: 14px 20px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn--primary {
+  background: linear-gradient(135deg, var(--accent), #B3FFE6);
+  color: #07111C;
+}
+.btn--secondary {
+  background: rgba(255,255,255,.04);
+  border-color: rgba(255,255,255,.12);
+  color: var(--text);
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 34px;
+}
+.stat {
+  padding: 18px;
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.stat strong {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+.stat span { color: var(--muted); font-size: 14px; }
+
+.hero__panel {
+  padding: 22px;
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+    rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: var(--shadow);
+}
+.panel__window {
+  border-radius: 22px;
+  background: linear-gradient(180deg, #121A31, #0F1427);
+  border: 1px solid rgba(255,255,255,.08);
+  padding: 18px;
+}
+.terminal {
+  display: grid;
+  gap: 10px;
+}
+.terminal__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.06);
+}
+.terminal__label { color: var(--muted); }
+.terminal__value { font-weight: 600; text-align: right; }
+.terminal__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  width: fit-content;
+  background: rgba(124,246,198,.08);
+  border: 1px solid rgba(124,246,198,.16);
+  color: #BFFBE5;
+  font-size: 13px;
+}
+.panel__quote {
+  margin-top: 16px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.section {
+  padding: 26px 0 90px;
+}
+.section__head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
   margin-bottom: 26px;
 }
-.drawer__what h4 {
-  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--accent); font-weight: 700; margin-bottom: 12px;
+.section__head h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  letter-spacing: -0.04em;
 }
-.drawer__what ul {
+.section__head p {
+  margin: 0;
+  max-width: 54ch;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+.card {
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.card--soft {
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+}
+.card__pad { padding: 22px; }
+.feature {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.feature h3 {
+  margin: 0 0 10px;
+  font-size: 1.3rem;
+}
+.feature p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.feature__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: end;
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.span-7 { grid-column: span 7; }
+.span-5 { grid-column: span 5; }
+.span-4 { grid-column: span 4; }
+.span-3 { grid-column: span 3; }
+.span-6 { grid-column: span 6; }
+.span-12 { grid-column: 1 / -1; }
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.service {
+  padding: 22px;
+  min-height: 228px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.service__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: start;
+}
+.service__icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
+  display: grid;
+  place-items: center;
+  background: rgba(130,167,255,.14);
+  border: 1px solid rgba(130,167,255,.2);
+  color: #D7E5FF;
+  font-size: 20px;
+}
+.service h3 { margin: 18px 0 10px; font-size: 1.25rem; }
+.service p { margin: 0; color: var(--muted); line-height: 1.7; }
+.service ul {
+  margin: 18px 0 0;
+  padding: 0;
   list-style: none;
-  display: flex; flex-direction: column; gap: 9px;
+  display: grid;
+  gap: 10px;
+  color: #DCE4FF;
 }
-.drawer__what li {
-  font-size: 14px; color: var(--ink); line-height: 1.5;
-  padding-left: 18px; position: relative;
-}
-.drawer__what li::before {
-  content: "→"; position: absolute; left: 0;
-  color: var(--accent); font-weight: 700;
-}
-.drawer__price-row {
-  display: flex; align-items: baseline; gap: 10px;
-  margin-bottom: 16px;
-  padding-top: 18px; border-top: 1px solid var(--line);
-}
-.drawer__price { font-size: 32px; font-weight: 600; color: var(--ink); font-family: "Times New Roman", serif; }
-.drawer__compare { font-size: 14px; color: var(--hint); text-decoration: line-through; }
-.drawer__btn {
-  display: block; width: 100%;
-  padding: 17px 22px;
-  background: var(--ink); color: white;
-  text-decoration: none; border-radius: 10px;
-  font-size: 15px; font-weight: 600; text-align: center;
-  transition: background 0.2s;
-}
-.drawer__btn:hover { background: var(--accent); }
-.drawer__note {
-  margin-top: 14px;
-  font-size: 11px; color: var(--hint);
-  text-align: center; letter-spacing: 0.5px;
+.service li::before {
+  content: "•";
+  color: var(--accent);
+  margin-right: 8px;
 }
 
-/* ── NOTIFICACIONES de compra (arriba izquierda) ── */
-.purchase-feed {
-  position: fixed; top: 78px; left: 20px;
-  width: calc(100% - 40px); max-width: 320px;
-  z-index: 80;
-  pointer-events: none;
+.process {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
 }
-.purchase-notification {
-  background: var(--ink); color: var(--paper);
-  padding: 14px 16px 14px 50px;
-  border-radius: 10px;
-  margin-bottom: 8px;
-  font-size: 13px; line-height: 1.45;
-  box-shadow: 0 10px 30px rgba(26,22,34,0.25);
-  position: relative;
-  transform: translateY(-20px); opacity: 0;
-  transition: transform 0.35s, opacity 0.35s;
-  pointer-events: auto;
+.step {
+  padding: 22px;
+  min-height: 200px;
 }
-.purchase-notification.show { transform: translateY(0); opacity: 1; }
-.purchase-notification::before {
-  content: "✓"; position: absolute;
-  left: 16px; top: 50%; transform: translateY(-50%);
-  width: 24px; height: 24px; border-radius: 50%;
-  background: var(--accent); color: white;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700;
+.step__num {
+  color: var(--accent-3);
+  font-weight: 700;
+  letter-spacing: .16em;
+  font-size: 12px;
 }
-.purchase-notification small { display: block; font-size: 10px; color: #B8AC9E; margin-top: 3px; letter-spacing: 0.3px; }
-.purchase-notification .ph-marker {
-  position: absolute; top: -4px; right: -4px;
-  background: var(--accent); color: white;
-  font-size: 8px; padding: 2px 5px; border-radius: 3px;
-  letter-spacing: 0.4px;
+.step h3 { margin: 14px 0 10px; font-size: 1.12rem; }
+.step p { margin: 0; color: var(--muted); line-height: 1.7; }
+
+.cta {
+  padding: 18px;
+  background:
+    radial-gradient(circle at top right, rgba(130,167,255,.18), transparent 40%),
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+}
+.cta__inner {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 20px;
+  align-items: center;
+  padding: 34px;
+}
+.cta h2 {
+  margin: 0 0 14px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  letter-spacing: -0.04em;
+}
+.cta p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 60ch;
+}
+.cta__aside {
+  display: grid;
+  gap: 12px;
+}
+.mini {
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(10,14,28,.5);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.mini strong { display: block; margin-bottom: 6px; }
+.mini span { color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+.footer {
+  padding: 30px 0 56px;
+  color: var(--muted);
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-/* ── ANIMACIONES ── */
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes bookEnter {
-  0% { opacity: 0; transform: translateY(40px) scale(0.92); }
-  100% { opacity: 1; }
+@media (max-width: 1024px) {
+  .hero__grid,
+  .cta__inner,
+  .section__head {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+  .services,
+  .process {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .bento {
+    grid-template-columns: 1fr 1fr;
+  }
+  .span-7, .span-5, .span-6, .span-4, .span-3 {
+    grid-column: span 1;
+  }
 }
-
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s, transform 0.7s; }
-.reveal.in { opacity: 1; transform: translateY(0); }
-
-@media (max-width: 600px) {
-  .hero__books { gap: 6px; }
-  .hero__book:nth-child(1), .hero__book:nth-child(3) { transform: none; }
+@media (max-width: 720px) {
+  .nav__links { display: none; }
+  .hero { padding-top: 48px; }
+  .hero h1 { max-width: 12ch; }
+  .stats,
+  .services,
+  .process,
+  .bento {
+    grid-template-columns: 1fr;
+  }
+  .hero__actions,
+  .footer__inner { flex-direction: column; align-items: stretch; }
+  .btn { justify-content: center; }
+  .cta__inner { padding: 22px; }
 }
 </style>
 </head>
 <body>
+  <div class="page">
+    <div class="grid-bg"></div>
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
 
-<!-- AGE GATE -->
-<div class="age-gate" id="ageGate">
-  <div class="age-gate__card">
-    <div class="age-gate__brand">NETWHEELS</div>
-    <div class="age-gate__title">Contenido para adultos</div>
-    <p class="age-gate__text">Material educativo sobre intimidad y relaciones para personas mayores de 18 años.</p>
-    <button class="age-gate__btn age-gate__btn--yes" onclick="passAgeGate()">Tengo 18 años o más</button>
-    <a class="age-gate__btn age-gate__btn--no" href="https://www.google.com">No, salir</a>
-  </div>
-</div>
-
-<!-- NAV -->
-<nav class="nav">
-  <a href="#" class="nav__brand">NETWHEELS</a>
-  <div class="nav__lang">
-    <a class="active" data-lang="es">ES</a>
-    <a data-lang="en">EN</a>
-    <a data-lang="pt">PT</a>
-  </div>
-</nav>
-
-<!-- BIENVENIDA MODAL premium con cupón visible — solo 1ra visita -->
-<div class="welcome-bg" id="welcomeBg" onclick="closeWelcome()"></div>
-<div class="welcome" id="welcome" role="dialog">
-  <div class="welcome__hero">
-    <button class="welcome__close" onclick="closeWelcome()" aria-label="Cerrar">×</button>
-    <div class="welcome__emoji">🎉</div>
-    <div class="welcome__kicker">Bienvenido a Carlos Steven</div>
-    <div class="welcome__title">Acabamos de lanzar.<br>Para ti, regalo de bienvenida.</div>
-  </div>
-  <div class="welcome__body">
-    <p class="welcome__desc">Por ser de los primeros, te damos <strong>10% de descuento</strong> en cualquier libro o pack. Tu código personal:</p>
-    <div class="welcome__coupon" onclick="copyCoupon(document.getElementById('welcomeCode'))">
-      <span class="welcome__coupon-text">Tu cupón</span>
-      <span class="welcome__coupon-code" id="welcomeCode">BIENVENIDA10</span>
-    </div>
-    <a class="welcome__btn" href="#linea-hombre" onclick="closeWelcome()">Empezar a explorar</a>
-  </div>
-</div>
-
-<!-- LIVE TICKER (datos reales — visitas en este navegador, ningún nombre inventado) -->
-<div class="live-ticker" id="liveTicker"></div>
-
-<!-- TRUST FLOATING BADGE -->
-<div class="trust-float" id="trustFloat"><span class="trust-float__num">+1.9M</span> personas confían en Carlos Steven</div>
-
-<!-- EXIT INTENT POPUP — retención de compra (cupón mayor) -->
-<div class="exit-popup-bg" id="exitPopupBg" onclick="closeExitPopup()"></div>
-<div class="exit-popup" id="exitPopup" role="dialog">
-  <div class="exit-popup__top">
-    <button class="exit-popup__close" onclick="closeExitPopup()" aria-label="Cerrar">×</button>
-    <div class="exit-popup__kicker">⚡ Espera — solo para ti</div>
-    <div class="exit-popup__title">No te vayas con las manos vacías.</div>
-  </div>
-  <div class="exit-popup__body">
-    <p class="exit-popup__desc">Antes de irte, te damos <strong>15% extra</strong> con un código exclusivo solo para quien estuvo a punto de cerrar.</p>
-    <div class="exit-popup__price-row">
-      <span class="exit-popup__new">15% OFF</span>
-      <span class="exit-popup__old">10%</span>
-    </div>
-    <div class="exit-popup__code" onclick="copyCoupon(this)">QUEDATE15</div>
-    <a class="exit-popup__btn" href="#linea-hombre" onclick="closeExitPopup()">Llévame a los libros con este código</a>
-    <button class="exit-popup__no" onclick="closeExitPopup()">No, gracias — cerrar</button>
-  </div>
-</div>
-
-<!-- LEAD POPUP modal (capítulo gratis con email) — aparece tras scroll o exit-intent -->
-<div class="lead-popup-bg" id="leadPopupBg" onclick="closeLeadPopup()"></div>
-<div class="lead-popup" id="leadPopup" role="dialog" aria-labelledby="leadPopupTitle">
-  <button class="lead-popup__close" onclick="closeLeadPopup()" aria-label="Cerrar">×</button>
-  <div class="lead-popup__icon">🎁</div>
-  <h3 class="lead-popup__title" id="leadPopupTitle">Tu primer capítulo, gratis</h3>
-  <p class="lead-popup__sub">Déjanos tu correo y te enviamos un capítulo del libro core para que pruebes el tono antes de comprar.</p>
-  <form class="lead-popup__form" id="leadForm" onsubmit="submitLead(event)" action="https://e0n3bi-gi.myshopify.com/contact" method="post">
-    <input type="hidden" name="form_type" value="customer">
-    <input type="hidden" name="utf8" value="✓">
-    <input type="hidden" name="contact[tags]" value="newsletter,lead-magnet-capitulo-gratis,landing-v3">
-    <input class="lead-popup__input" type="email" name="contact[email]" placeholder="tu@correo.com" required>
-    <button class="lead-popup__btn" type="submit">Enviarme el capítulo</button>
-  </form>
-  <p class="lead-popup__note">Solo lo usamos para enviarte el capítulo. Sin spam, puedes darte de baja cuando quieras.</p>
-</div>
-
-<!-- HERO minimal -->
-<header class="hero">
-  <div class="hero__eyebrow">+18 · CONTENIDO EDUCATIVO</div>
-  <h1 class="hero__title">Lo que nadie te <em>dijo</em><br>sobre el deseo.</h1>
-
-  <div class="hero__marquee" id="heroMarquee">
-    <div class="hero__track" id="heroTrack"></div>
-  </div>
-
-  <div class="hero__selector" id="heroSelector">
-    <a href="#linea-hombre" class="hero__sel-btn hero__sel-btn--primary" data-sel="h">Para mí (hombre)</a>
-    <a href="#linea-mujer" class="hero__sel-btn hero__sel-btn--ghost" data-sel="m">Para mí (mujer)</a>
-  </div>
-</header>
-
-<div class="banda">Acceso inmediato · PDF + interactivo · <strong>privacidad total</strong></div>
-
-<!-- LIVE STATUS — datos REALES verificados (vidIQ + Fourthwall) -->
-<div class="live-status" id="liveStatus">
-  <div class="live-status__item">
-    <span class="live-status__dot"></span>
-    <span><span class="live-status__num">+1.9M</span> suscriptores en nuestros 4 canales</span>
-  </div>
-  <div class="live-status__item">
-    <span>🎥 <span class="live-status__num">+293M</span> visualizaciones acumuladas en YouTube</span>
-  </div>
-  <div class="live-status__item">
-    <span>📱 también en TikTok · Instagram · Facebook</span>
-  </div>
-</div>
-
-<div class="trust-bar">
-  <div class="trust-bar__item trust-bar__item--instant">Acceso en &lt;60s</div>
-  <div class="trust-bar__item trust-bar__item--privacy">Compra 100% discreta</div>
-  <div class="trust-bar__item trust-bar__item--secure">Pago seguro Shopify</div>
-  <div class="trust-bar__item trust-bar__item--access">PDF + HTML interactivo</div>
-</div>
-
-<!-- FEARS — pain agitation antes de mostrar productos (conexión emocional) -->
-<section class="fears" id="te-suena">
-  <div class="fears__inner">
-    <div class="fears__head reveal">
-      <div class="fears__kicker">Si alguna de estas frases te pegó</div>
-      <h2 class="fears__title">Esto que sientes tiene nombre.<br>Y sí, tiene salida.</h2>
-      <p class="fears__sub">No estás solo. No estás sola. Lo que llevas cargando en silencio lo escuchamos en cientos de comentarios de nuestros videos cada semana.</p>
-    </div>
-    <div class="fears__grid">
-      <div class="fears-col reveal">
-        <span class="fears-col__avatar">Si eres hombre</span>
-        <h3 class="fears-col__title">Lo que más te calla por dentro:</h3>
-        <ul class="fears-col__list">
-          <li>"Antes me buscaba ella, ahora siento que tengo que rogar"</li>
-          <li>"No sé qué hago mal y me da miedo perderla"</li>
-          <li>"Cada vez que intento hablar del tema, termina mal"</li>
-          <li>"Me da vergüenza buscar ayuda en otro lado"</li>
-        </ul>
-        <div class="fears-col__answer">
-          <strong>El problema no es lo que crees.</strong> Hay 9 verdades silenciosas y 6 gestos que la apagan sin que tú lo notes. Y un mapa para que dejes de adivinar y empieces a entender. Te lo damos abajo.
-        </div>
+    <header class="nav">
+      <div class="nav__inner">
+        <a class="brand" href="#inicio" aria-label="Carlos Steven">
+          <span class="brand__mark">CS</span>
+          <span>Carlos Steven</span>
+        </a>
+        <nav class="nav__links" aria-label="Secciones">
+          <a href="#soluciones">Soluciones</a>
+          <a href="#proceso">Proceso</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+        <a class="nav__cta" href="#contacto">Agendar llamada</a>
       </div>
-      <div class="fears-col reveal">
-        <span class="fears-col__avatar">Si eres mujer</span>
-        <h3 class="fears-col__title">Lo que cargas en silencio:</h3>
-        <ul class="fears-col__list">
-          <li>"Algo se rompió en mí y no sé cuándo pasó"</li>
-          <li>"Pido y termino pidiendo perdón por haber pedido"</li>
-          <li>"Ya no me reconozco en el espejo"</li>
-          <li>"Sé que no debería sentir culpa, pero la siento igual"</li>
-        </ul>
-        <div class="fears-col__answer">
-          <strong>Tu deseo no se rompió.</strong> Solo le bajaste el volumen — por años de culpa que nunca fue tuya. Estas guías son ese mapa para reencontrarte, sin presión, sin terapia obligatoria. Te lo damos abajo.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </header>
 
-<!-- LÍNEA HOMBRE (primero) -->
-<section class="line line--h" id="linea-hombre">
-  <div class="line__inner">
-    <div class="line__head reveal">
-      <div class="line__kicker">Línea Hombre</div>
-      <h2 class="line__title">Lo que ella no se atreve a<br>decirte en voz alta.</h2>
-      <p class="line__sub">Tres libros para dejar de adivinar y leer su deseo con criterio. Sin trucos, sin "técnicas alfa", sin sermones.</p>
-    </div>
-
-    <div class="books" id="booksH"></div>
-    <div id="packH"></div>
-  </div>
-</section>
-
-<!-- POR QUÉ CONFIAR — trust building con datos reales -->
-<section class="trust" id="por-que-confiar">
-  <div class="trust__inner">
-    <div class="trust__head reveal">
-      <div class="trust__kicker">Por qué confiar en nosotros</div>
-      <h2 class="trust__title">No somos otra tienda de internet.<br>Somos Carlos Steven.</h2>
-    </div>
-    <div class="trust__grid">
-      <div class="trust-card reveal">
-        <div class="trust-card__icon">🎬</div>
-        <h3 class="trust-card__title">+12 años creando contenido</h3>
-        <p class="trust-card__desc">Llevamos desde <span class="trust-card__strong">2014</span> haciendo contenido sobre relaciones, intimidad y dinámicas de pareja. No nacimos vendiendo libros, nacimos enseñando.</p>
-      </div>
-      <div class="trust-card reveal">
-        <div class="trust-card__icon">👥</div>
-        <h3 class="trust-card__title">+1.9M personas nos siguen</h3>
-        <p class="trust-card__desc">Nuestros <span class="trust-card__strong">4 canales de YouTube + redes</span> acumulan más de 293M visualizaciones. Antes de comprar, busca "Netwheels Reflexiones" en YouTube y mira con tus propios ojos.</p>
-      </div>
-      <div class="trust-card reveal">
-        <div class="trust-card__icon">🔒</div>
-        <h3 class="trust-card__title">Pago seguro Shopify</h3>
-        <p class="trust-card__desc">Tu compra pasa por el checkout cifrado <span class="trust-card__strong">SSL de Shopify</span>. No vemos ni guardamos tu tarjeta — la procesa Stripe o PayPal directamente.</p>
-      </div>
-      <div class="trust-card reveal">
-        <div class="trust-card__icon">🤫</div>
-        <h3 class="trust-card__title">100% privado y discreto</h3>
-        <p class="trust-card__desc">Nada llega a tu casa. <span class="trust-card__strong">No aparece</span> en estados de cuenta con nombres raros. Solo "Carlos Steven". Entrega digital al instante.</p>
-      </div>
-      <div class="trust-card reveal">
-        <div class="trust-card__icon">💬</div>
-        <h3 class="trust-card__title">Soporte real por WhatsApp</h3>
-        <p class="trust-card__desc">No es un bot. Si tienes una duda antes o después de comprar, escríbenos a <span class="trust-card__strong">+593 98 464 1331</span> y te respondemos tú a tú.</p>
-      </div>
-      <div class="trust-card reveal">
-        <div class="trust-card__icon">↩️</div>
-        <h3 class="trust-card__title">Garantía 7 días</h3>
-        <p class="trust-card__desc">Si después de leer tu libro sientes que no es para ti, escríbenos en los primeros <span class="trust-card__strong">7 días</span> y te devolvemos tu dinero. Sin preguntas raras.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CÓMO FUNCIONA — 3 pasos simples (reduce fricción mental antes de comprar) -->
-<section class="how" id="como-funciona">
-  <div class="how__inner">
-    <div class="how__head reveal">
-      <div class="how__kicker">Cómo funciona</div>
-      <h2 class="how__title">De clic a leyendo,<br>en menos de 60 segundos.</h2>
-    </div>
-    <div class="how__steps">
-      <div class="how-step reveal">
-        <div class="how-step__num">1</div>
-        <div class="how-step__icon">📚</div>
-        <div class="how-step__title">Eliges tu libro</div>
-        <div class="how-step__desc">Mira las portadas, lee qué hay dentro, descubre cuál es para ti — o usa nuestro quiz de 30 segundos.</div>
-      </div>
-      <div class="how-step reveal">
-        <div class="how-step__num">2</div>
-        <div class="how-step__icon">🔒</div>
-        <div class="how-step__title">Pagas seguro</div>
-        <div class="how-step__desc">Tarjeta o PayPal en el checkout cifrado de Shopify. Sin guardar tus datos. Sin facturas con nombres raros.</div>
-      </div>
-      <div class="how-step reveal">
-        <div class="how-step__num">3</div>
-        <div class="how-step__icon">⚡</div>
-        <div class="how-step__title">Acceso inmediato</div>
-        <div class="how-step__desc">En menos de un minuto te llega el PDF y la versión interactiva a tu correo. Listo para leer en cualquier dispositivo.</div>
-      </div>
-    </div>
-    <div class="how__guarantee reveal">
-      <strong>100% privado.</strong> Acceso digital — nada llega a tu casa, no aparece en estados de cuenta con nombres raros, nadie tiene que saber. Solo entre tú y tu lectura.
-    </div>
-  </div>
-</section>
-
-<!-- SECCIÓN INTERACTIVA: raspadito + quiz -->
-<section class="play" id="play">
-  <div class="play__inner">
-    <div class="play__head reveal">
-      <div class="play__kicker">Antes de elegir, juguemos</div>
-      <h2 class="play__title">Dos cosas rápidas para ti.</h2>
-      <p class="play__sub">Raspa tu cupón y descubre cuál libro te corresponde según cómo respondes — sin tomarte un test psicológico de 40 preguntas.</p>
-    </div>
-
-    <div class="play__grid">
-      <!-- RASPADITO -->
-      <div class="scratch-card reveal">
-        <div class="scratch-card__title">Raspa tu cupón</div>
-        <div class="scratch-card__sub">Pasa el dedo o el cursor sobre el área para descubrir tu descuento.</div>
-        <div class="scratch-card__area" id="scratchArea">
-          <div class="scratch-card__prize">
-            <div class="scratch-card__prize-icon">🎁</div>
-            <div class="scratch-card__prize-text">Tu cupón está debajo</div>
+    <main id="inicio" class="shell">
+      <section class="hero">
+        <div class="hero__grid">
+          <div>
+            <span class="eyebrow">Soluciones tecnológicas para negocio real</span>
+            <h1>Claridad <em>operativa</em> para vender, automatizar y crecer.</h1>
+            <p>
+              Carlos Steven ayuda a negocios y equipos pequeños a ordenar procesos,
+              modernizar su presencia digital y construir sistemas que reduzcan fricción
+              desde el primer mes.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="#contacto">Quiero una propuesta</a>
+              <a class="btn btn--secondary" href="#soluciones">Ver soluciones</a>
+            </div>
+            <div class="stats" aria-label="Indicadores clave">
+              <div class="stat">
+                <strong>+12</strong>
+                <span>años trabajando con producto, contenido y automatización</span>
+              </div>
+              <div class="stat">
+                <strong>48h</strong>
+                <span>para entregar diagnóstico y ruta priorizada</span>
+              </div>
+              <div class="stat">
+                <strong>1 stack</strong>
+                <span>web, operaciones y automatización bajo una sola estrategia</span>
+              </div>
+            </div>
           </div>
-          <canvas class="scratch-card__canvas" id="scratchCanvas" width="260" height="160"></canvas>
-          <div class="scratch-card__hint" id="scratchHint">⚡ Rasca aquí ⚡</div>
-          <div class="coupon-ticket" id="couponTicket">
-            <div class="coupon-ticket__kicker">¡Cupón desbloqueado!</div>
-            <div class="coupon-ticket__title">10% extra al checkout</div>
-            <div class="coupon-ticket__code" id="couponCode" onclick="copyCoupon(this)">BIENVENIDA10</div>
-            <div class="coupon-ticket__copy-hint">tócalo para copiar</div>
+
+          <aside class="hero__panel">
+            <div class="panel__window">
+              <div class="terminal">
+                <div class="terminal__chip">Entrega rápida · enfoque pragmático</div>
+                <div class="terminal__row">
+                  <span class="terminal__label">Sitios web</span>
+                  <span class="terminal__value">Landing pages, portales y páginas de venta</span>
+                </div>
+                <div class="terminal__row">
+                  <span class="terminal__label">Automatización</span>
+                  <span class="terminal__value">Flujos, formularios, alertas y seguimiento</span>
+                </div>
+                <div class="terminal__row">
+                  <span class="terminal__label">Integración</span>
+                  <span class="terminal__value">CRM, pagos, analítica y mensajería</span>
+                </div>
+                <div class="terminal__row">
+                  <span class="terminal__label">Soporte</span>
+                  <span class="terminal__value">Implementación y mantenimiento continuo</span>
+                </div>
+              </div>
+              <p class="panel__quote">
+                “Menos piezas desconectadas. Más sistema operativo para vender y operar.”
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="soluciones" class="section">
+        <div class="section__head">
+          <h2>Un catálogo simple, útil y vendible.</h2>
+          <p>Diseñado para negocios que necesitan resolver problemas concretos, no solo “verse modernos”.</p>
+        </div>
+
+        <div class="services">
+          <article class="card service">
+            <div class="service__top">
+              <div>
+                <span class="eyebrow">01 · Web</span>
+                <h3>Landing pages y sitios de conversión</h3>
+              </div>
+              <div class="service__icon">↗</div>
+            </div>
+            <p>Diseño y desarrollo de páginas rápidas, claras y orientadas a vender o captar leads.</p>
+            <ul>
+              <li>Diseño responsive</li>
+              <li>SEO base</li>
+              <li>Integración con formularios y tracking</li>
+            </ul>
+          </article>
+
+          <article class="card service card--soft">
+            <div class="service__top">
+              <div>
+                <span class="eyebrow">02 · Ops</span>
+                <h3>Automatización de procesos</h3>
+              </div>
+              <div class="service__icon">◌</div>
+            </div>
+            <p>Menos trabajo manual, más trazabilidad. Flujos para ventas, soporte y operaciones internas.</p>
+            <ul>
+              <li>Recordatorios y alertas</li>
+              <li>Rutas de aprobación</li>
+              <li>Seguimiento automático</li>
+            </ul>
+          </article>
+
+          <article class="card service">
+            <div class="service__top">
+              <div>
+                <span class="eyebrow">03 · Growth</span>
+                <h3>Analítica e integraciones</h3>
+              </div>
+              <div class="service__icon">◷</div>
+            </div>
+            <p>Conecta lo que ya usas: CRM, WhatsApp, email marketing, pagos y métricas de negocio.</p>
+            <ul>
+              <li>Paneles de control</li>
+              <li>Datos accionables</li>
+              <li>Mensajería conectada</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section__head">
+          <h2>Cómo trabajo.</h2>
+          <p>Un flujo corto para entender el problema, construir la solución y dejarla operando sin improvisación.</p>
+        </div>
+
+        <div class="process">
+          <article class="card step">
+            <span class="step__num">Paso 01</span>
+            <h3>Diagnóstico</h3>
+            <p>Revisamos el estado actual, cuellos de botella y oportunidades de impacto rápido.</p>
+          </article>
+          <article class="card step">
+            <span class="step__num">Paso 02</span>
+            <h3>Arquitectura</h3>
+            <p>Definimos una solución simple, escalable y aterrizada al negocio.</p>
+          </article>
+          <article class="card step">
+            <span class="step__num">Paso 03</span>
+            <h3>Implementación</h3>
+            <p>Construcción, pruebas y ajustes para que el sistema funcione en producción.</p>
+          </article>
+          <article class="card step">
+            <span class="step__num">Paso 04</span>
+            <h3>Acompañamiento</h3>
+            <p>Soporte y mejoras para que la operación no se detenga al publicar.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section__head">
+          <h2>Lo que entregas cuando el proyecto sale bien.</h2>
+          <p>La meta no es solo publicar algo bonito. Es dejar un sistema que soporte ventas, seguimiento y crecimiento.</p>
+        </div>
+
+        <div class="bento">
+          <article class="card feature span-7 card--soft">
+            <div class="card__pad feature">
+              <div>
+                <h3>Un sitio que no se siente genérico</h3>
+                <p>Identidad visual sobria, estructura clara y un mensaje que suena a negocio real, no a plantilla.</p>
+              </div>
+              <div class="feature__meta">
+                <span>Branding · UX · conversión</span>
+                <span>Visible en desktop y móvil</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card feature span-5">
+            <div class="card__pad feature">
+              <div>
+                <h3>Menos procesos manuales</h3>
+                <p>Automatizaciones que reducen el tiempo perdido en tareas repetitivas y seguimiento.</p>
+              </div>
+              <div class="feature__meta">
+                <span>Operaciones</span>
+                <span>Escalable</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card feature span-4">
+            <div class="card__pad feature">
+              <div>
+                <h3>Datos que sí sirven</h3>
+                <p>Analítica práctica para entender qué está pasando y qué mover primero.</p>
+              </div>
+              <div class="feature__meta">
+                <span>KPIs</span>
+                <span>Seguimiento</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card feature span-4 card--soft">
+            <div class="card__pad feature">
+              <div>
+                <h3>Integraciones limpias</h3>
+                <p>Conexión con herramientas existentes sin sobrecomplicar el stack.</p>
+              </div>
+              <div class="feature__meta">
+                <span>CRM · pagos · email</span>
+                <span>Sin fricción</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="card feature span-4">
+            <div class="card__pad feature">
+              <div>
+                <h3>Soporte de continuidad</h3>
+                <p>La implementación no termina al entregar. Se deja listo para operar y mejorar.</p>
+              </div>
+              <div class="feature__meta">
+                <span>Mantenimiento</span>
+                <span>Mejora continua</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contacto" class="section">
+        <div class="cta">
+          <div class="cta__inner">
+            <div>
+              <h2>¿Tienes un negocio y necesitas ordenarlo mejor?</h2>
+              <p>
+                Cuéntame qué problema quieres resolver. Puedo ayudarte con una landing,
+                automatización, integración o una ruta completa para ordenar tu operación digital.
+              </p>
+              <div class="hero__actions" style="margin-top:24px;">
+                <a class="btn btn--primary" href="mailto:hola@carlossteven.dev">Escribir por correo</a>
+                <a class="btn btn--secondary" href="https://wa.me/593984641331" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+            <div class="cta__aside">
+              <div class="mini">
+                <strong>Tiempo de respuesta</strong>
+                <span>Normalmente dentro de 1 día laboral.</span>
+              </div>
+              <div class="mini">
+                <strong>Formato de trabajo</strong>
+                <span>Diagnóstico breve, propuesta clara y ejecución por etapas.</span>
+              </div>
+            </div>
           </div>
         </div>
-        <a class="scratch-card__btn" id="scratchClaim" href="#linea-hombre">Usar mi cupón ahora</a>
-      </div>
+      </section>
+    </main>
 
-      <!-- QUIZ -->
-      <div class="quiz-card reveal">
-        <div class="quiz-card__title">¿Cuál libro es para ti?</div>
-        <div class="quiz-card__sub">3 preguntas. 30 segundos. Te decimos cuál te conviene.</div>
-        <div class="quiz-card__progress"><div class="quiz-card__progress-bar" id="quizBar"></div></div>
-        <div id="quizContent"></div>
+    <footer class="footer">
+      <div class="shell footer__inner">
+        <div>Carlos Steven · Soluciones tecnológicas</div>
+        <div>Web · automatización · integraciones · analítica</div>
+        <div>© 2026</div>
       </div>
-    </div>
+    </footer>
   </div>
-</section>
-
-<!-- LÍNEA MUJER -->
-<section class="line line--m" id="linea-mujer">
-  <div class="line__inner">
-    <div class="line__head reveal">
-      <div class="line__kicker">Línea Mujer</div>
-      <h2 class="line__title">Tu deseo no se rompió.<br>Solo le bajaste el volumen.</h2>
-      <p class="line__sub">Tres libros para soltar la culpa, reconciliarte con tu cuerpo y volver a sentir — al ritmo de tu cuerpo.</p>
-    </div>
-
-    <div class="books" id="booksM"></div>
-    <div id="packM"></div>
-  </div>
-</section>
-
-<!-- RESEÑAS -->
-<section class="reviews">
-  <div class="reviews__inner">
-    <div class="reviews__head reveal">
-      <div class="reviews__kicker">Lo que dicen las lectoras y lectores</div>
-      <h2 class="reviews__title">Honestidad, no recetas.</h2>
-    </div>
-    <div id="reviewsHost">
-      <div class="reviews__marquee" id="reviewsMarquee">
-        <div class="reviews__track" id="reviewsTrack"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EQUIPO — Nashly, Edwards, Jack (autores reales detrás del proyecto) -->
-<section class="team">
-  <div class="team__inner">
-    <div class="team__head reveal">
-      <div class="team__kicker">El equipo detrás</div>
-      <h2 class="team__title">Los rostros que ya conoces de YouTube.</h2>
-      <p class="team__sub">Si has visto contenido de Carlos Steven en redes, ya nos conoces. Estos libros los escribimos juntos, con los mismos valores con los que hacemos cada video.</p>
-    </div>
-    <div class="team__grid">
-      <div class="team-member reveal">
-        <div class="team-member__avatar" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_31Yb9LpaofPPye2db3buWC1sJh6/hf_20260527_035620_6bb13e1e-d5bd-4b1a-9629-514899575726.png');"></div>
-        <div class="team-member__name">Nashly</div>
-        <div class="team-member__role">Actriz · Co-creadora</div>
-        <p class="team-member__bio">La voz de la línea Mujer. Lleva años escribiendo con nosotros las historias que más resuenan en el canal — y ahora dentro de los libros.</p>
-      </div>
-      <div class="team-member reveal">
-        <div class="team-member__avatar" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_31Yb9LpaofPPye2db3buWC1sJh6/hf_20260527_035625_99596804-d8fa-4db9-bae2-dab4e11475f8.png');"></div>
-        <div class="team-member__name">Edwards</div>
-        <div class="team-member__role">Productor · Co-creador</div>
-        <p class="team-member__bio">Fundador de Carlos Steven. Co-escritor de la línea Hombre y arquitecto detrás de los 4 canales de YouTube que llevas viendo.</p>
-      </div>
-      <div class="team-member reveal">
-        <div class="team-member__avatar" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_31Yb9LpaofPPye2db3buWC1sJh6/hf_20260527_035630_d95042f0-6e07-4f34-b8f8-1636f56c847c.png');"></div>
-        <div class="team-member__name">Jack</div>
-        <div class="team-member__role">Actor · Voz Hombre</div>
-        <p class="team-member__bio">La voz masculina que acompaña los temas íntimos del canal. Su perspectiva está dentro de cada conversación que vas a leer.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SOCIALS WALL — autoridad ampliada con stats grandes -->
-<section class="socials-wall">
-  <div class="socials-wall__inner">
-    <div class="socials-wall__head reveal">
-      <div class="socials-wall__kicker">12 años construyendo Carlos Steven</div>
-      <h2 class="socials-wall__title">No somos una marca nueva.<br>Somos lo que estás viendo hace años.</h2>
-    </div>
-
-    <!-- AUTORIDAD AMPLIADA — números reales destacados -->
-    <div class="authority-stats reveal">
-      <div class="authority-stat">
-        <div class="authority-stat__num">+1.9<small>M</small></div>
-        <div class="authority-stat__lbl">Suscriptores</div>
-      </div>
-      <div class="authority-stat">
-        <div class="authority-stat__num">+293<small>M</small></div>
-        <div class="authority-stat__lbl">Vistas YouTube</div>
-      </div>
-      <div class="authority-stat">
-        <div class="authority-stat__num">5,218</div>
-        <div class="authority-stat__lbl">Videos publicados</div>
-      </div>
-      <div class="authority-stat">
-        <div class="authority-stat__num">12<small>+</small></div>
-        <div class="authority-stat__lbl">Años activos</div>
-      </div>
-    </div>
-    <div class="socials-wall__grid">
-
-      <div class="socials-group reveal">
-        <div class="socials-group__title">YOUTUBE</div>
-        <ul class="socials-group__list">
-          <li><a href="https://www.youtube.com/@Netwheelsreflexiones" target="_blank" rel="noopener">Netwheels Reflexiones</a></li>
-          <li><a href="https://www.youtube.com/@netwheelsreflexionesreacciona" target="_blank" rel="noopener">Netwheels Reacciona</a></li>
-          <li><a href="https://www.youtube.com/@Sonelfilmsreflexiones" target="_blank" rel="noopener">Sonel Films Reflexiones</a></li>
-          <li><a href="https://www.youtube.com/channel/UC4EzlZWT50ROqOKNVdNJ2cw" target="_blank" rel="noopener">Canal adicional</a></li>
-        </ul>
-      </div>
-
-      <div class="socials-group reveal">
-        <div class="socials-group__title">TIKTOK</div>
-        <ul class="socials-group__list">
-          <li><a href="https://www.tiktok.com/@netwheelsreflexiones?lang=es" target="_blank" rel="noopener">Netwheels Reflexiones</a></li>
-          <li><a href="https://www.tiktok.com/@netwheelsreflexionesusa" target="_blank" rel="noopener">Netwheels Reflexiones USA</a></li>
-          <li><a href="https://www.tiktok.com/@netwheelsenterteimentec" target="_blank" rel="noopener">Netwheels Entertainment EC</a></li>
-        </ul>
-      </div>
-
-      <div class="socials-group reveal">
-        <div class="socials-group__title">FACEBOOK</div>
-        <ul class="socials-group__list">
-          <li><a href="https://www.facebook.com/ReflexionesRenato/" target="_blank" rel="noopener">Reflexiones Renato</a></li>
-          <li><a href="https://www.facebook.com/Historiasdeinspiracion/" target="_blank" rel="noopener">Historias de Inspiración</a></li>
-          <li><a href="https://www.facebook.com/lafamiliaamarilla.ec" target="_blank" rel="noopener">La Familia Amarilla</a></li>
-        </ul>
-      </div>
-
-      <div class="socials-group reveal">
-        <div class="socials-group__title">INSTAGRAM &amp; CONTACTO</div>
-        <ul class="socials-group__list">
-          <li><a href="https://www.instagram.com/netwheels.reflexiones/" target="_blank" rel="noopener">@netwheels.reflexiones</a></li>
-          <li><a href="https://netwheels-shop.fourthwall.com/" target="_blank" rel="noopener">Tienda Fourthwall</a></li>
-          <li><a href="https://wa.me/593984641331?text=Hola%20Netwheels" target="_blank" rel="noopener">WhatsApp +593 98 464 1331</a></li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- MÉTODOS DE PAGO — refuerza seguridad antes del footer -->
-<div class="payments">
-  <div class="payments__label">Pago 100% seguro · procesado por</div>
-  <div class="payments__icons">
-    <div class="payment-icon">VISA</div>
-    <div class="payment-icon">MASTERCARD</div>
-    <div class="payment-icon">AMEX</div>
-    <div class="payment-icon payment-icon--paypal">PAYPAL</div>
-    <div class="payment-icon payment-icon--shop">SHOP PAY</div>
-    <div class="payment-icon">SSL · 🔒</div>
-  </div>
-</div>
-
-<footer class="footer">
-  <div class="footer__brand">CARLOS STEVEN</div>
-  <div class="footer__line">Contenido educativo para adultos (+18) · Hecho en Ecuador</div>
-  <div class="footer__line">© 2026 Carlos Steven · <a href="https://e0n3bi-gi.myshopify.com/policies/refund-policy" target="_blank">Política de reembolso</a></div>
-  <div class="footer__line" style="margin-top:14px; font-size:11px; opacity:0.6; max-width:540px; margin-left:auto; margin-right:auto;">
-    Estas guías no reemplazan el acompañamiento de un/una profesional de la salud o terapia de pareja.
-  </div>
-</footer>
-
-<!-- DRAWER -->
-<div class="drawer-bg" id="drawerBg" onclick="closeDrawer()"></div>
-<aside class="drawer" id="drawer">
-  <div class="drawer__urgent" id="drawerUrgent">
-    <div class="drawer__urgent-icon">⚡</div>
-    <div class="drawer__urgent-text">
-      <div class="drawer__urgent-title">Precio de lanzamiento</div>
-      <div class="drawer__urgent-sub">Hoy ahorras hasta el 40%. Vuelve al precio normal en…</div>
-    </div>
-    <div class="drawer__urgent-time" id="drawerUrgentTime">10:00</div>
-  </div>
-  <button class="drawer__close" onclick="closeDrawer()" aria-label="Cerrar">✕</button>
-  <img class="drawer__cover" id="drawerCover" src="" alt="" />
-  <div class="drawer__body">
-    <div class="drawer__kicker" id="drawerKicker"></div>
-    <h3 class="drawer__title" id="drawerTitle"></h3>
-    <p class="drawer__desc" id="drawerDesc"></p>
-    <div class="drawer__what">
-      <h4>Qué vas a encontrar dentro</h4>
-      <ul id="drawerWhat"></ul>
-    </div>
-    <div class="drawer__featured" id="drawerFeatured" style="display:none"></div>
-    <div class="drawer__section" id="drawerChaptersWrap" style="display:none">
-      <h4>Contenido del libro</h4>
-      <ol class="drawer__chapters" id="drawerChapters"></ol>
-    </div>
-    <div class="drawer__section" id="drawerForwhoWrap" style="display:none">
-      <h4>Para quién es (y para quién no)</h4>
-      <div class="drawer__forwho" id="drawerForwho"></div>
-    </div>
-    <div class="drawer__section" id="drawerFormatWrap" style="display:none">
-      <h4>Formato y acceso</h4>
-      <div class="drawer__format" id="drawerFormat"></div>
-    </div>
-    <div class="drawer__coupon">
-      <span class="drawer__coupon-icon">🎁</span>
-      <div class="drawer__coupon-text">
-        Extra 10% al checkout con el código <span class="drawer__coupon-code" onclick="navigator.clipboard.writeText('BIENVENIDA10'); this.textContent='¡copiado!'; setTimeout(()=>this.textContent='BIENVENIDA10',1500)">BIENVENIDA10</span>
-      </div>
-    </div>
-    <div class="drawer__price-row">
-      <span class="drawer__price" id="drawerPrice"></span>
-      <span class="drawer__compare" id="drawerCompare"></span>
-    </div>
-    <div class="drawer__btns">
-      <button class="drawer__btn--add" id="drawerAddBtn" onclick="addCurrentToCart()">Agregar al carrito</button>
-      <a class="drawer__btn--buy" id="drawerBtn" href="#">Comprar ahora</a>
-    </div>
-    <p class="drawer__note">Acceso digital inmediato · PDF + HTML interactivo</p>
-  </div>
-</aside>
-
-<!-- NOTIFICACIONES DE COMPRA -->
-<div class="purchase-feed" id="purchaseFeed"></div>
-
-<!-- WHATSAPP FAB -->
-<a class="wa-fab" href="https://wa.me/593984641331?text=Hola%20Carlos%20Steven%2C%20vengo%20de%20la%20landing%20y%20tengo%20una%20pregunta%20sobre%20los%20libros." target="_blank" rel="noopener" aria-label="WhatsApp Carlos Steven" data-track="click_whatsapp">
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.057 21.945h-.003a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.002-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.888 9.884zm8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.473-8.413z"/></svg>
-  <span class="wa-fab__label">Escríbenos</span>
-</a>
-
-<!-- CARRITO FLOTANTE + DRAWER -->
-<button class="cart-fab" id="cartFab" aria-label="Ver carrito" onclick="openCart()">
-  🛍
-  <span class="cart-fab__count hidden" id="cartCount">0</span>
-</button>
-<div class="cart-drawer-bg" id="cartDrawerBg" onclick="closeCart()"></div>
-<aside class="cart-drawer" id="cartDrawer">
-  <div class="cart-drawer__head">
-    <div class="cart-drawer__title">Tu carrito</div>
-    <button class="cart-drawer__close" onclick="closeCart()" aria-label="Cerrar">✕</button>
-  </div>
-  <div class="cart-drawer__body" id="cartBody"></div>
-  <div class="cart-drawer__foot" id="cartFoot" style="display:none">
-    <div class="cart-drawer__total">Total <strong id="cartTotal">$0.00</strong></div>
-    <a class="cart-drawer__checkout" id="cartCheckout" href="#" target="_blank">Ir al checkout seguro</a>
-    <div class="cart-drawer__note">Pago procesado por Shopify · Acceso digital inmediato</div>
-  </div>
-</aside>
 
 <script>
-// ── DATA: catálogo y placeholders ──
-const SHOP = "https://e0n3bi-gi.myshopify.com/products/";
-const SHOP_CART = "https://e0n3bi-gi.myshopify.com/cart/";
-const UTM = "?utm_source=landing_v3&utm_medium=organic&utm_campaign=lanzamiento_v1&utm_content=";
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.animate(
+            [
+              { opacity: 0, transform: 'translateY(16px)' },
+              { opacity: 1, transform: 'translateY(0)' }
+            ],
+            { duration: 700, easing: 'cubic-bezier(.2,.9,.3,1)', fill: 'forwards' }
+          );
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
 
-// Variant IDs reales de Shopify (necesarios para el carrito permalink)
-const VARIANTS = {
-  m1: "48763472576768", m2: "48763472806144", m3: "48763473035520", mp: "48763473199360",
-  h1: "48763472249088", h2: "48763472281856", h3: "48763472314624", hp: "48763472347392"
-};
-
-const BOOKS = {
-  m: [
-    {
-      id: "m1", title: "Las Señales Que Tu Deseo Te Manda",
-      kicker: "Por aquí empiezas", price: "$5.99", compare: "$8.99",
-      cover: "https://cdn.shopify.com/s/files/1/0837/0293/9904/files/hf_20260526_192335_a661a983-e640-4900-8a3c-24a3d9b63a16.png",
-      handle: "las-senales-que-tu-deseo-te-manda",
-      desc: "9 verdades para soltar la culpa y 6 apagadores que llevan años bajándote el volumen — sin que te dieras cuenta.",
-      whyBuy: ["Vas a saber EXACTAMENTE qué te apaga", "Vas a tener un lenguaje propio para nombrar lo que sientes", "Vas a soltar culpa que nunca fue tuya"],
-      what: ["Las 9 verdades sobre tu deseo, sin moralizar", "Los 6 apagadores que casi nadie nombra", "Cómo leer las señales que tu cuerpo te sigue mandando"],
-      featured: { stars: 5, text: "Placeholder — reseña real de lectora va aquí cuando llegue.", author: "Lectora · País" },
-      format: "PDF digital + HTML interactivo · Lectura aproximada: 30–45 min · Acceso inmediato post-compra",
-      chapters: ["Empieza por aquí", "Las verdades silenciadas", "Los apagadores invisibles", "Cómo leer tu cuerpo de nuevo", "Próximos pasos hacia ti"],
-      forWho: { yes: ["Para ti que sientes que algo se apagó y no sabes por qué", "Para ti que cargas culpa que no te pertenece", "Para ti que quieres entenderte antes de explicarle a alguien"], no: ["Si buscas trucos rápidos o recetas mágicas", "Si esperas un manual médico (no lo es)"] },
-      utm: "m_entrada"
-    },
-    {
-      id: "m2", title: "Reconexión", badge: "Más leído",
-      kicker: "El núcleo", price: "$14.99", compare: "$19.99",
-      cover: "https://cdn.shopify.com/s/files/1/0837/0293/9904/files/hf_20260526_192341_1f6471e2-37d8-439e-b5c4-b1cc57c0e125.png",
-      handle: "reconexion",
-      desc: "La guía completa con capítulos profundos, escenarios paso a paso y ejercicios para hacer en privado, al ritmo de tu cuerpo.",
-      whyBuy: ["Vas a tener TU mapa de qué te enciende y qué te apaga", "Vas a poder volver a ti sin pedirle permiso a nadie", "Vas a salir con un plan claro, no más vagas intenciones"],
-      what: ["Capítulos sobre culpa, deseo receptivo, acelerador y freno", "Escenarios paso a paso para cuando te apagas", "Ejercicios guiados sin obligación de rendir"],
-      featured: { stars: 5, text: "Placeholder — reseña real de lectora va aquí cuando llegue.", author: "Lectora · País" },
-      format: "PDF digital + HTML interactivo · Lectura aproximada: 30–45 min · Acceso inmediato post-compra",
-      chapters: ["Empieza por aquí", "Las verdades silenciadas", "Los apagadores invisibles", "Cómo leer tu cuerpo de nuevo", "Próximos pasos hacia ti"],
-      forWho: { yes: ["Para ti que sientes que algo se apagó y no sabes por qué", "Para ti que cargas culpa que no te pertenece", "Para ti que quieres entenderte antes de explicarle a alguien"], no: ["Si buscas trucos rápidos o recetas mágicas", "Si esperas un manual médico (no lo es)"] },
-      utm: "m_core"
-    },
-    {
-      id: "m3", title: "Pedir Sin Culpa",
-      kicker: "El complemento", price: "$7.99", compare: "$11.99",
-      cover: "https://cdn.shopify.com/s/files/1/0837/0293/9904/files/hf_20260526_191741_b9fea2c3-8c46-43c7-a117-7afed65b060d.png",
-      handle: "pedir-sin-culpa",
-      desc: "Cómo decir lo que quieres y lo que no — sin que la culpa te calle ni tengas que pedir perdón después.",
-      whyBuy: ["Vas a recuperar tu voz en frases concretas", "Vas a dejar de pedir perdón por sentir", "Vas a poner límites sin que se sienta ruptura"],
-      what: ["Cómo nombrar lo que quieres sin sentir que exiges", "Cómo poner un límite sin sentir ruptura", "Qué hacer cuando él reacciona mal sin recoger lo dicho"],
-      featured: { stars: 5, text: "Placeholder — reseña real de lectora va aquí cuando llegue.", author: "Lectora · País" },
-      format: "PDF digital + HTML interactivo · Lectura aproximada: 30–45 min · Acceso inmediato post-compra",
-      chapters: ["Empieza por aquí", "Las verdades silenciadas", "Los apagadores invisibles", "Cómo leer tu cuerpo de nuevo", "Próximos pasos hacia ti"],
-      forWho: { yes: ["Para ti que sientes que algo se apagó y no sabes por qué", "Para ti que cargas culpa que no te pertenece", "Para ti que quieres entenderte antes de explicarle a alguien"], no: ["Si buscas trucos rápidos o recetas mágicas", "Si esperas un manual médico (no lo es)"] },
-      utm: "m_comp"
-    }
-  ],
-  h: [
-    {
-      id: "h1", title: "Lo Que Ella No Se Atreve A Pedirte",
-      kicker: "Por aquí empiezas", price: "$5.99", compare: "$8.99",
-      cover: "https://cdn.shopify.com/s/files/1/0837/0293/9904/files/hf_20260526_192329_48bd4ad5-9db1-4d38-90db-f7830ba949bf.png",
-      handle: "lo-que-ella-no-se-atreve-a-pedirte",
-      desc: "Las 9 verdades que ella no se atreve a decirte en voz alta — y los 6 errores que la apagan sin que tú lo notes.",
-      whyBuy: ["Vas a saber QUÉ está pensando ella sin tener que preguntar", "Vas a dejar de adivinar y empezar a entender", "Vas a saber qué cambiar esta semana — gestos concretos"],
-      what: ["Las 9 verdades que ella calla, sin juicio", "Los 6 apagadores más comunes y cómo dejar de hacerlos", "Señales que te dicen que aún hay deseo"],
-      featured: { stars: 5, text: "Placeholder — reseña real de lector va aquí cuando llegue.", author: "Lector · País" },
-      format: "PDF digital + HTML interactivo · Lectura aproximada: 30–45 min · Acceso inmediato post-compra",
-      chapters: ["Lo que ella calla por dentro", "Las 9 verdades silenciadas", "Los 6 apagadores sin querer", "Cómo leerla sin preguntar", "Qué cambiar esta semana"],
-      forWho: { yes: ["Para ti que sientes que algo se enfrió y no sabes qué pasó", "Para ti que quieres dejar de adivinar y empezar a entender", "Para ti que estás dispuesto a escuchar antes de defenderte"], no: ["Si buscas técnicas alfa o trucos rápidos", "Si esperas que el problema sea solo de ella"] },
-      utm: "h_entrada"
-    },
-    {
-      id: "h2", title: "El Amante Que Ella No Cambia Por Nadie", badge: "Más vendido",
-      kicker: "El núcleo", price: "$14.99", compare: "$19.99",
-      cover: "https://cdn.shopify.com/s/files/1/0837/0293/9904/files/hf_20260526_191722_6d6138a4-4023-45ff-88f3-ed634cb0d1f0.png",
-      handle: "el-amante-que-ella-no-cambia-por-nadie",
-      desc: "8 capítulos profundos con escenarios paso a paso y un plan de 4 semanas para implementar.",
-      whyBuy: ["Vas a tener la SEGURIDAD que se construye desde adentro", "Vas a saber leer su deseo como un mapa, no un misterio", "Vas a ejecutar un plan de 4 semanas con tareas reales"],
-      what: ["8 capítulos sobre clima emocional, deseo receptivo y reconexión", "Escenarios paso a paso para cuando ella se cierra", "Plan de 4 semanas con tareas concretas"],
-      featured: { stars: 5, text: "Placeholder — reseña real de lector va aquí cuando llegue.", author: "Lector · País" },
-      format: "PDF ~45 páginas + HTML interactivo con ejercicios guardables · 8 capítulos · Plan de 4 semanas · Acceso inmediato",
-      chapters: ["El clima emocional invisible", "Deseo receptivo vs deseo espontáneo", "Acelerador y freno: el modelo dual", "La mente espectadora", "Comunicación sin culpa", "Reconexión física sin presión", "Cuando ella se cierra: qué hacer", "Plan de 4 semanas — paso a paso"],
-      forWho: { yes: ["Para ti que ya intuyes que el problema no es solo de ella", "Para ti que quieres generar deseo, no solo pedirlo", "Para ti que estás listo para ejecutar un plan real"], no: ["Si esperas trucos sin trabajo personal", "Si no estás dispuesto a leer 8 capítulos seguidos"] },
-      utm: "h_core"
-    },
-    {
-      id: "h3", title: "Conversaciones De Cama",
-      kicker: "El complemento", price: "$7.99", compare: "$11.99",
-      cover: "https://cdn.shopify.com/s/files/1/0837/0293/9904/files/hf_20260526_185629_b10f97a1-3e77-472e-a037-026d797a1b38.png",
-      handle: "conversaciones-de-cama",
-      desc: "Cómo hablar de lo que nunca se ha hablado — sin que se rompa el momento, sin que se enoje, sin que se cierre.",
-      whyBuy: ["Vas a poder abrir temas que llevaban meses cerrados", "Vas a tener las frases EXACTAS, no consejos vagos", "Vas a hablar sin que termine en discusión"],
-      what: ["Cómo abrir la conversación sin emboscada", "Las frases que matan el clima — y con cuáles reemplazarlas", "Qué hacer cuando la respuesta es no"],
-      featured: { stars: 5, text: "Placeholder — reseña real de lector va aquí cuando llegue.", author: "Lector · País" },
-      format: "PDF digital + HTML interactivo · Lectura aproximada: 25–35 min · Acceso inmediato post-compra",
-      chapters: ["Por qué nunca se habla esto", "Cómo abrir sin emboscada", "Las frases que matan el clima", "Cómo preguntar sin presionar", "Cuando la respuesta es no"],
-      forWho: { yes: ["Para ti que quieres algo más y no sabes cómo decirlo", "Para ti que has intentado hablar y termina mal", "Para ti que quieres dejar de adivinar"], no: ["Si esperas un guion mecánico de seducción", "Si no estás dispuesto a escuchar respuestas honestas"] },
-      utm: "h_comp"
-    }
-  ]
-};
-
-const PACKS = {
-  m: {
-    id: "mp", title: "La Mujer Que Se Reencuentra",
-    kicker: "Pack completo", price: "$24.99", compare: "$28.97",
-    cover: "https://cdn.shopify.com/s/files/1/0837/0293/9904/files/hf_20260526_191745_fffe39e0-09fe-4833-91ee-18cab4920900.png",
-    handle: "pack-la-mujer-que-se-reencuentra",
-    desc: "Los 3 libros diseñados para leerse en orden, porque cada uno abre lo que el siguiente desarrolla.",
-    utm: "m_pack"
-  },
-  h: {
-    id: "hp", title: "El Hombre Que Ella Desea",
-    kicker: "Pack completo", price: "$24.99", compare: "$28.97",
-    cover: "https://cdn.shopify.com/s/files/1/0837/0293/9904/files/hf_20260526_191727_cb7bedf0-014c-4d1f-8661-a9764ee06a61.png",
-    handle: "pack-el-hombre-que-ella-desea",
-    desc: "Los 3 libros juntos — diagnóstico, plan de 4 semanas y comunicación. Cada uno desbloquea el siguiente.",
-    utm: "h_pack"
-  }
-};
-
-// ─────────────────────────────────────────────────────────────────────────
-// SEED PLACEHOLDERS — REEMPLAZAR ANTES DE PRODUCCIÓN
-// ─────────────────────────────────────────────────────────────────────────
-// REVIEWS_SEED: array de reseñas REALES.
-// Pre-lanzamiento: vacío (la sección muestra mensaje "Sé el primero en reseñar").
-// Post-lanzamiento: agregar objetos {stars, text, author, role} con reseñas reales
-// de Shopify Reviews app / Loox / Judge.me / comentarios reales de YouTube con permiso.
-const REVIEWS_SEED = []; // ← agregar reseñas REALES aquí (no inventar)
-const REVIEWS_ARE_SEED = false;
-
-// PURCHASE_FEED_SEED: notificaciones de compras REALES.
-// Pre-lanzamiento: vacío (componente inactivo, no se muestra nada).
-// Post-lanzamiento: agregar objetos con compras reales de Shopify Orders API
-// para cumplir con Shopify Section 9 (Anti-Fraud) y leyes consumidor.
-const DEMO_MODE = false;
-const PURCHASE_FEED_SEED = []; // ← agregar SOLO ventas reales cuando lleguen
-// ─────────────────────────────────────────────────────────────────────────
-
-// ── COUNTDOWN: 7 días desde la PRIMERA visita del usuario ──
-// Honest scarcity: cada usuario tiene SU propio countdown de 7 días reales
-// guardado en localStorage. Al expirar se reinicia (puedes apagar al lanzar).
-const COUNTDOWN_DAYS = 7;
-function getOrSetCountdownTarget() {
-  const KEY = "nw_countdown_target";
-  let target = parseInt(localStorage.getItem(KEY), 10);
-  const now = Date.now();
-  if (!target || target < now) {
-    target = now + COUNTDOWN_DAYS * 24 * 60 * 60 * 1000;
-    localStorage.setItem(KEY, target);
-  }
-  return target;
-}
-
-// ── RENDER libros (con why-buy box + botón comprar directo) ──
-function renderBooks(line, mount) {
-  const html = BOOKS[line].map(b => {
-    const variantId = VARIANTS[b.id];
-    const checkoutUrl = `${SHOP_CART}${variantId}:1?discount=BIENVENIDA10${UTM.replace('?','&')}${b.utm}_buy`;
-    return `
-    <article class="book reveal" data-book="${line}-${b.id}">
-      <div class="book__cover-wrap" onclick="openDrawer('${line}','${b.id}')" style="cursor:pointer;">
-        ${b.badge ? `<span class="book__badge">${b.badge}</span>` : ''}
-        <img class="book__cover" src="${b.cover}" alt="${b.title}" loading="lazy" />
-      </div>
-      <div class="book__meta" onclick="openDrawer('${line}','${b.id}')" style="cursor:pointer;">
-        <h3 class="book__title">${b.title}</h3>
-        <div style="display:flex; align-items:baseline; gap:6px; flex-shrink:0;">
-          ${b.compare ? `<span style="font-size:12px; color:var(--hint); text-decoration:line-through; text-decoration-color:#FF6B5C;">${b.compare}</span>` : ''}
-          <span class="book__price">${b.price}</span>
-        </div>
-      </div>
-      <div class="book__hint" onclick="openDrawer('${line}','${b.id}')" style="cursor:pointer;">${b.kicker}</div>
-      <div class="book__why" onclick="openDrawer('${line}','${b.id}')" style="cursor:pointer;">
-        <div class="book__why-title">Vas a poder</div>
-        <ul>${b.whyBuy.map(w => `<li>${w}</li>`).join('')}</ul>
-      </div>
-      <a class="book__buy" href="${checkoutUrl}" data-track="buy_${b.utm}_card" target="_blank">Comprar ahora · ${b.price}</a>
-    </article>
-  `}).join('');
-  document.getElementById(mount).innerHTML = html;
-}
-
-// ── RENDER pack con banner promo en ROJO + countdown ──
-function renderPack(line, mount) {
-  const p = PACKS[line];
-  document.getElementById(mount).innerHTML = `
-    <div class="pack-spotlight reveal">
-      <div class="pack-spotlight__img"><img src="${p.cover}" alt="${p.title}" loading="lazy" /></div>
-      <div class="pack-spotlight__body">
-        <div class="promo-strip">
-          <span class="promo-strip__dot"></span>
-          Oferta de lanzamiento · Termina en
-        </div>
-        <span class="pack-spotlight__badge">${p.kicker} · Mejor valor</span>
-        <h3 class="pack-spotlight__title">${p.title}</h3>
-        <p class="pack-spotlight__desc">${p.desc}</p>
-        <div class="pack-spotlight__price-row">
-          <span class="pack-spotlight__amount-promo">${p.price}</span>
-          <span class="pack-spotlight__compare-promo">${p.compare}</span>
-          <span class="pack-spotlight__save-badge">Ahorras $3.98</span>
-        </div>
-        <div class="countdown" id="countdown-${line}">
-          <div class="countdown__cell"><div class="countdown__num" data-cd="d">—</div><div class="countdown__lbl">días</div></div>
-          <div class="countdown__cell"><div class="countdown__num" data-cd="h">—</div><div class="countdown__lbl">horas</div></div>
-          <div class="countdown__cell"><div class="countdown__num" data-cd="m">—</div><div class="countdown__lbl">min</div></div>
-          <div class="countdown__cell"><div class="countdown__num" data-cd="s">—</div><div class="countdown__lbl">seg</div></div>
-        </div>
-        <a class="pack-spotlight__btn" style="margin-top:18px" href="${SHOP}${p.handle}${UTM}${p.utm}" data-track="click_${p.utm}">Llevarme el pack ($${p.price.replace('$','')})</a>
-        <div class="guarantee-badge">Garantía 7 días · Soporte WhatsApp</div>
-      </div>
-    </div>
-  `;
-}
-
-// ── Hero marquee: carrusel auto-scroll de los 8 libros con drag manual ──
-function setupHeroMarquee() {
-  const marquee = document.getElementById('heroMarquee');
-  const track = document.getElementById('heroTrack');
-  if (!marquee || !track) return;
-
-  // Orden alternado mujer/hombre para variedad visual
-  const allBooks = [
-    BOOKS.m[0], BOOKS.h[0],
-    BOOKS.m[1], BOOKS.h[1],
-    BOOKS.m[2], BOOKS.h[2],
-    PACKS.m,    PACKS.h
-  ];
-  // Duplicamos para loop infinito sin saltos visibles
-  const sequence = [...allBooks, ...allBooks];
-  track.innerHTML = sequence.map((b, i) => {
-    const line = b.id.startsWith('m') ? 'm' : 'h';
-    const isPack = b.id.endsWith('p');
-    const onClick = isPack
-      ? `openPackDrawer('${line}')`
-      : `openDrawer('${line}','${b.id}')`;
-    return `<a class="hero__book" style="background-image:url(${b.cover})"
-              onclick="${onClick}; return false;"
-              aria-label="${b.title}" href="#libros"></a>`;
-  }).join('');
-
-  // ── AUTO-SCROLL ──
-  let auto = true;
-  let speed = 0.6; // px por frame (~36 px/s a 60fps)
-  let rafId;
-  function tick() {
-    if (auto && !isDragging) {
-      marquee.scrollLeft += speed;
-      // Cuando hemos pasado la mitad (la 2da copia), saltamos al inicio sin discontinuidad visual
-      const half = track.scrollWidth / 2;
-      if (marquee.scrollLeft >= half) marquee.scrollLeft -= half;
-    }
-    rafId = requestAnimationFrame(tick);
-  }
-  rafId = requestAnimationFrame(tick);
-
-  // Pausa al pasar cursor o tocar
-  marquee.addEventListener('mouseenter', () => { auto = false; });
-  marquee.addEventListener('mouseleave', () => { auto = true; });
-
-  // ── DRAG manual con mouse ──
-  let isDragging = false, startX = 0, startScroll = 0, moved = 0;
-  marquee.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    moved = 0;
-    startX = e.pageX;
-    startScroll = marquee.scrollLeft;
-    marquee.classList.add('dragging');
-  });
-  window.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const dx = e.pageX - startX;
-    moved = Math.abs(dx);
-    marquee.scrollLeft = startScroll - dx * 1.4;
-  });
-  window.addEventListener('mouseup', () => {
-    if (!isDragging) return;
-    isDragging = false;
-    marquee.classList.remove('dragging');
-    // Si el usuario arrastró más de 5px, ignoramos el click siguiente para no abrir drawer accidental
-    if (moved > 5) {
-      const blocker = (e) => { e.stopPropagation(); e.preventDefault(); window.removeEventListener('click', blocker, true); };
-      window.addEventListener('click', blocker, true);
-    }
-    // Normalizar scroll para mantener loop infinito
-    const half = track.scrollWidth / 2;
-    if (marquee.scrollLeft >= half) marquee.scrollLeft -= half;
-    if (marquee.scrollLeft < 0) marquee.scrollLeft += half;
-  });
-
-  // Touch drag funciona nativo con overflow-x: auto en mobile
-  marquee.addEventListener('touchstart', () => { auto = false; }, { passive: true });
-  marquee.addEventListener('touchend', () => {
-    setTimeout(() => { auto = true; }, 1500);
-    const half = track.scrollWidth / 2;
-    if (marquee.scrollLeft >= half) marquee.scrollLeft -= half;
-  }, { passive: true });
-}
-
-// ── DRAWER ──
-let currentDrawerBook = null;
-let drawerCountdownInterval = null;
-
-function openPackDrawer(line) {
-  const p = PACKS[line];
-  if (!p) return;
-  // Mostrar el pack como si fuera libro: con sus chapters como "libros incluidos"
-  const fakeBookFromPack = {
-    ...p,
-    what: ["Los 3 libros completos de esta línea", "PDF de cada libro + pack combinado", "3 versiones interactivas HTML con tu progreso guardado"],
-    whyBuy: ["Vas a ahorrar frente al precio individual ($28.97 → $24.99)", "Vas a tener el recorrido completo en orden", "Vas a recibir TODOS los formatos: PDF + HTML interactivo"],
-    chapters: line === 'h'
-      ? ["Lo Que Ella No Se Atreve A Pedirte (Diagnóstico)", "El Amante Que Ella No Cambia Por Nadie (Núcleo)", "Conversaciones De Cama (Comunicación)"]
-      : ["Las Señales Que Tu Deseo Te Manda (Mapa)", "Reconexión (Núcleo)", "Pedir Sin Culpa (Voz)"],
-    forWho: { yes: ["Para quien quiere el recorrido completo, no solo una pieza", "Para quien valora el mejor precio por palabra leída"], no: ["Si solo quieres probar un libro suelto primero"] },
-    format: "Acceso digital inmediato · 3 PDFs separados + PDF combinado · 3 HTMLs interactivos"
-  };
-  // Inyectamos temporalmente en BOOKS para reusar openDrawer
-  if (!BOOKS[line].find(x => x.id === p.id)) BOOKS[line].push(fakeBookFromPack);
-  openDrawer(line, p.id);
-}
-
-function openDrawer(line, id) {
-  const b = BOOKS[line].find(x => x.id === id);
-  if (!b) return;
-  currentDrawerBook = { line, id };
-  // Iniciar countdown 10 min al abrir
-  startDrawerCountdown();
-  document.getElementById('drawerCover').src = b.cover;
-  document.getElementById('drawerCover').alt = b.title;
-  document.getElementById('drawerKicker').textContent = b.kicker;
-  document.getElementById('drawerTitle').textContent = b.title;
-  document.getElementById('drawerDesc').textContent = b.desc;
-  document.getElementById('drawerWhat').innerHTML = b.what.map(w => `<li>${w}</li>`).join('');
-  document.getElementById('drawerPrice').textContent = b.price;
-  document.getElementById('drawerCompare').textContent = b.compare || '';
-  // Reseña destacada — solo mostrar si el texto no contiene "Placeholder"
-  if (b.featured && b.featured.text && !b.featured.text.toLowerCase().includes('placeholder')) {
-    const f = b.featured;
-    document.getElementById('drawerFeatured').innerHTML = `
-      <div class="drawer__featured-stars">${'★'.repeat(f.stars)}${'☆'.repeat(5-f.stars)}</div>
-      <p class="drawer__featured-text">"${f.text}"</p>
-      <div class="drawer__featured-author"><strong>${f.author}</strong></div>
-    `;
-    document.getElementById('drawerFeatured').style.display = 'block';
-  } else { document.getElementById('drawerFeatured').style.display = 'none'; }
-  // Capítulos
-  if (b.chapters && b.chapters.length) {
-    document.getElementById('drawerChapters').innerHTML = b.chapters.map(c => `<li>${c}</li>`).join('');
-    document.getElementById('drawerChaptersWrap').style.display = 'block';
-  } else { document.getElementById('drawerChaptersWrap').style.display = 'none'; }
-  // Para quién
-  if (b.forWho) {
-    const yesRows = b.forWho.yes.map(t => `<div class="drawer__forwho-row">${t}</div>`).join('');
-    const noRows = b.forWho.no.map(t => `<div class="drawer__forwho-row drawer__forwho-row--not">${t}</div>`).join('');
-    document.getElementById('drawerForwho').innerHTML = yesRows + noRows;
-    document.getElementById('drawerForwhoWrap').style.display = 'block';
-  } else { document.getElementById('drawerForwhoWrap').style.display = 'none'; }
-  // Formato
-  if (b.format) {
-    document.getElementById('drawerFormat').innerHTML = b.format.replace(/·/g, '<strong>·</strong>');
-    document.getElementById('drawerFormatWrap').style.display = 'block';
-  } else { document.getElementById('drawerFormatWrap').style.display = 'none'; }
-  const btn = document.getElementById('drawerBtn');
-  btn.href = `${SHOP}${b.handle}${UTM}${b.utm}`;
-  btn.setAttribute('data-track', `click_${b.utm}_drawer`);
-  btn.textContent = `Comprar ahora (${b.price})`;
-  document.getElementById('drawer').classList.add('open');
-  document.getElementById('drawerBg').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeDrawer() {
-  document.getElementById('drawer').classList.remove('open');
-  document.getElementById('drawerBg').classList.remove('open');
-  document.body.style.overflow = '';
-  if (drawerCountdownInterval) { clearInterval(drawerCountdownInterval); drawerCountdownInterval = null; }
-}
-
-// ── COUNTDOWN 10 minutos al abrir drawer (real, por sesión) ──
-function startDrawerCountdown() {
-  if (drawerCountdownInterval) clearInterval(drawerCountdownInterval);
-  let secondsLeft = 10 * 60; // 10 minutos
-  const display = document.getElementById('drawerUrgentTime');
-  const urgent = document.getElementById('drawerUrgent');
-  function tick() {
-    if (secondsLeft <= 0) {
-      display.textContent = "00:00";
-      urgent.style.animation = "none";
-      urgent.style.opacity = "0.6";
-      clearInterval(drawerCountdownInterval);
-      return;
-    }
-    const m = Math.floor(secondsLeft / 60);
-    const s = secondsLeft % 60;
-    display.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-    secondsLeft--;
-  }
-  urgent.style.animation = "";
-  urgent.style.opacity = "1";
-  tick();
-  drawerCountdownInterval = setInterval(tick, 1000);
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDrawer(); closeCart(); }});
-
-// ── RESEÑAS — carrusel auto-scroll no-arrastrable ──
-function renderReviews() {
-  const host = document.getElementById('reviewsHost');
-  const marquee = document.getElementById('reviewsMarquee');
-  const track = document.getElementById('reviewsTrack');
-  if (!REVIEWS_SEED || REVIEWS_SEED.length === 0) {
-    // Sin reseñas — ocultar el marquee y reemplazar TODO el host por un solo card centrado
-    if (marquee) marquee.style.display = 'none';
-    host.innerHTML = `
-      <div style="display:flex; justify-content:center; padding:8px 16px 0;">
-        <div style="text-align:center; padding:44px 32px; background:var(--cream); border-radius:18px; box-shadow: 0 10px 30px rgba(26,22,34,0.06); max-width:560px; width:100%;">
-          <div style="font-size:36px; margin-bottom:16px;">✍️</div>
-          <h3 style="font-family:'Times New Roman',serif; font-size:24px; color:var(--ink); margin:0 0 12px; font-weight:500; line-height:1.25;">Sé de los primeros en compartir tu experiencia</h3>
-          <p style="font-size:15px; color:var(--soft); line-height:1.65; margin:0 auto 22px; max-width:440px;">Acabamos de lanzar. Cuando termines tu libro, tu reseña aparecerá aquí — solo mostramos reseñas verificadas de personas que compraron.</p>
-          <a href="#linea-hombre" style="display:inline-block; padding:13px 26px; background:var(--ink); color:white; text-decoration:none; border-radius:10px; font-weight:600; font-size:14px;">Ver los libros</a>
-        </div>
-      </div>
-    `;
-    return;
-  }
-  // Duplicamos el array para loop visual sin saltos
-  const list = [...REVIEWS_SEED, ...REVIEWS_SEED];
-  const html = list.map(r => `
-    <div class="review">
-      <div class="review__stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
-      <p class="review__text">"${r.text}"</p>
-      <div class="review__author"><strong>${r.author}</strong><br>${r.role}</div>
-    </div>
-  `).join('');
-  track.innerHTML = html;
-}
-
-// ── NOTIFICACIONES de compra (popup arriba-izq, cada 8–10s) ──
-function startPurchaseFeed() {
-  if (!PURCHASE_FEED_SEED || PURCHASE_FEED_SEED.length === 0) {
-    console.info("[Carlos Steven] purchase feed inactivo.");
-    return;
-  }
-  let idx = 0;
-  const feed = document.getElementById('purchaseFeed');
-  function showNext() {
-    const item = PURCHASE_FEED_SEED[idx % PURCHASE_FEED_SEED.length];
-    const el = document.createElement('div');
-    el.className = 'purchase-notification';
-    el.innerHTML = `
-      ${DEMO_MODE ? '<span class="ph-marker demo-marker">DEMO</span>' : ''}
-      <strong>${item.name}</strong> de ${item.city} compró <em>${item.product}</em>
-      <small>hace ${item.minutesAgo} min</small>
-    `;
-    feed.appendChild(el);
-    requestAnimationFrame(() => el.classList.add('show'));
-    setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 400); }, 5500);
-    idx++;
-    const nextDelay = 8000 + Math.random() * 2000;
-    setTimeout(showNext, nextDelay);
-  }
-  setTimeout(showNext, 4000);
-}
-
-// ── CARRITO (LocalStorage + Shopify Cart Permalink) ──
-const CART_KEY = "nw_cart_v1";
-function getCart() { try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch(e) { return []; } }
-function saveCart(c) { localStorage.setItem(CART_KEY, JSON.stringify(c)); renderCart(); }
-function lookupBook(line, id) {
-  if (line === 'pack') return PACKS[id === 'mp' ? 'm' : 'h'];
-  return BOOKS[line].find(x => x.id === id);
-}
-function addToCart(line, id) {
-  const b = lookupBook(line, id);
-  if (!b) return;
-  const variantId = VARIANTS[b.id];
-  if (!variantId) return console.warn("missing variant", b.id);
-  const cart = getCart();
-  const existing = cart.find(x => x.variantId === variantId);
-  if (existing) existing.qty += 1;
-  else cart.push({ variantId, title: b.title, price: b.price, cover: b.cover, qty: 1 });
-  saveCart(cart);
-  openCart();
-}
-function addCurrentToCart() {
-  if (!currentDrawerBook) return;
-  addToCart(currentDrawerBook.line, currentDrawerBook.id);
-}
-function removeFromCart(variantId) {
-  saveCart(getCart().filter(x => x.variantId !== variantId));
-}
-function cartTotal(cart) {
-  return cart.reduce((s, i) => s + parseFloat(i.price.replace('$','')) * i.qty, 0);
-}
-function buildCheckoutUrl(cart) {
-  if (!cart.length) return "#";
-  const parts = cart.map(i => `${i.variantId}:${i.qty}`).join(',');
-  return `${SHOP_CART}${parts}${UTM}cart_checkout`;
-}
-function renderCart() {
-  const cart = getCart();
-  const body = document.getElementById('cartBody');
-  const foot = document.getElementById('cartFoot');
-  const count = document.getElementById('cartCount');
-  if (!cart.length) {
-    body.innerHTML = '<div class="cart-empty">Tu carrito está vacío.<br><br>Explora los libros y agrega lo que te llame.</div>';
-    foot.style.display = 'none';
-    count.classList.add('hidden');
-    count.textContent = '0';
-    return;
-  }
-  body.innerHTML = cart.map(i => `
-    <div class="cart-item">
-      <img class="cart-item__img" src="${i.cover}" alt="${i.title}">
-      <div class="cart-item__info">
-        <div class="cart-item__title">${i.title}</div>
-        <div class="cart-item__price">${i.price} × ${i.qty}</div>
-        <button class="cart-item__remove" onclick="removeFromCart('${i.variantId}')">Quitar</button>
-      </div>
-    </div>
-  `).join('');
-  document.getElementById('cartTotal').textContent = '$' + cartTotal(cart).toFixed(2);
-  document.getElementById('cartCheckout').href = buildCheckoutUrl(cart);
-  foot.style.display = 'block';
-  const totalQty = cart.reduce((s,i)=>s+i.qty, 0);
-  count.textContent = totalQty;
-  count.classList.remove('hidden');
-}
-function openCart() {
-  document.getElementById('cartDrawer').classList.add('open');
-  document.getElementById('cartDrawerBg').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeCart() {
-  document.getElementById('cartDrawer').classList.remove('open');
-  document.getElementById('cartDrawerBg').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-// ── COUNTDOWN tick ──
-function startCountdown() {
-  const target = getOrSetCountdownTarget();
-  function tick() {
-    const now = Date.now();
-    let diff = Math.max(0, target - now);
-    const d = Math.floor(diff / (1000*60*60*24)); diff -= d * 1000*60*60*24;
-    const h = Math.floor(diff / (1000*60*60)); diff -= h * 1000*60*60;
-    const m = Math.floor(diff / (1000*60)); diff -= m * 1000*60;
-    const s = Math.floor(diff / 1000);
-    document.querySelectorAll('[data-cd="d"]').forEach(e => e.textContent = String(d).padStart(2,'0'));
-    document.querySelectorAll('[data-cd="h"]').forEach(e => e.textContent = String(h).padStart(2,'0'));
-    document.querySelectorAll('[data-cd="m"]').forEach(e => e.textContent = String(m).padStart(2,'0'));
-    document.querySelectorAll('[data-cd="s"]').forEach(e => e.textContent = String(s).padStart(2,'0'));
-  }
-  tick();
-  setInterval(tick, 1000);
-}
-
-// ── REVEAL ON SCROLL ──
-function setupReveal() {
-  const els = document.querySelectorAll('.reveal');
-  if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }});
-  }, { threshold: 0.12 });
-  els.forEach(e => io.observe(e));
-}
-
-// ── AGE GATE ──
-(function() {
-  const KEY = "nw_age_ok";
-  if (localStorage.getItem(KEY) === "1") document.getElementById("ageGate").classList.add("hidden");
-  window.passAgeGate = function() {
-    localStorage.setItem(KEY, "1");
-    document.getElementById("ageGate").classList.add("hidden");
-  };
-})();
-
-// ── TRACKING HOOK ──
-document.addEventListener("click", function(e) {
-  const a = e.target.closest("[data-track]");
-  if (!a) return;
-  const event = a.getAttribute("data-track");
-  if (window.gtag) window.gtag("event", event, { event_category: "cta_click" });
-  if (window.fbq)  window.fbq("trackCustom", event);
-});
-
-// ── LANG SWITCHER (placeholder) ──
-document.querySelectorAll("[data-lang]").forEach(a => {
-  a.addEventListener("click", function(e) {
-    e.preventDefault();
-    const lang = a.getAttribute("data-lang");
-    if (lang === "es") return;
-    alert("Versión " + lang.toUpperCase() + " disponible próximamente.");
-  });
-});
-
-// ── Copiar cupón con animación ──
-function copyCoupon(el) {
-  const code = el.textContent.trim();
-  if (navigator.clipboard) navigator.clipboard.writeText(code).catch(()=>{});
-  const orig = el.textContent;
-  el.textContent = "✓ copiado";
-  el.style.background = "rgba(47,107,79,0.15)";
-  el.style.color = "#2F6B4F";
-  setTimeout(() => {
-    el.textContent = orig;
-    el.style.background = "";
-    el.style.color = "";
-  }, 1500);
-}
-
-// ── RASPADITO (scratch card) ──
-function setupScratch() {
-  const canvas = document.getElementById('scratchCanvas');
-  const hint = document.getElementById('scratchHint');
-  const claim = document.getElementById('scratchClaim');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-
-  // Capa "no rascada" — degradado wine + textura
-  function paintCover() {
-    const g = ctx.createLinearGradient(0,0,W,H);
-    g.addColorStop(0, '#B85540'); g.addColorStop(1, '#8F3322');
-    ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
-    // Pequeño patrón de dots
-    ctx.fillStyle = 'rgba(255,255,255,0.06)';
-    for (let i=0; i<60; i++) {
-      ctx.beginPath();
-      ctx.arc(Math.random()*W, Math.random()*H, Math.random()*2+1, 0, Math.PI*2);
-      ctx.fill();
-    }
-    ctx.globalCompositeOperation = 'destination-out';
-  }
-  paintCover();
-
-  let scratching = false, revealed = false, scratchedPct = 0;
-
-  function scratchAt(x, y) {
-    ctx.beginPath();
-    ctx.arc(x, y, 32, 0, Math.PI*2); // brush más grande para que rasque más rápido
-    ctx.fill();
-    checkProgress();
-  }
-
-  function checkProgress() {
-    // Sample a grid para ver cuánto se ha rascado
-    const data = ctx.getImageData(0,0,W,H).data;
-    let transparent = 0, total = 0;
-    for (let i = 3; i < data.length; i += 4 * 50) {
-      total++;
-      if (data[i] === 0) transparent++;
-    }
-    scratchedPct = (transparent / total) * 100;
-    if (hint && scratchedPct > 3) hint.style.opacity = '0';
-    if (!revealed && scratchedPct > 18) { // 18% en vez de 45%
-      revealed = true;
-      // Animación: limpiar canvas + mostrar ticket flotante con bounce
-      ctx.clearRect(0, 0, W, H);
-      const ticket = document.getElementById('couponTicket');
-      if (ticket) ticket.classList.add('show');
-      claim.classList.add('show');
-      try { if (window.gtag) gtag('event', 'scratch_revealed', { event_category: 'engagement' }); } catch(e) {}
-    }
-  }
-
-  function getPos(e) {
-    const r = canvas.getBoundingClientRect();
-    const t = e.touches ? e.touches[0] : e;
-    return { x: (t.clientX - r.left) * (W / r.width), y: (t.clientY - r.top) * (H / r.height) };
-  }
-
-  canvas.addEventListener('mousedown', e => { scratching = true; const p = getPos(e); scratchAt(p.x, p.y); });
-  canvas.addEventListener('mousemove', e => { if (!scratching) return; const p = getPos(e); scratchAt(p.x, p.y); });
-  window.addEventListener('mouseup', () => { scratching = false; });
-  canvas.addEventListener('touchstart', e => { e.preventDefault(); scratching = true; const p = getPos(e); scratchAt(p.x, p.y); }, { passive: false });
-  canvas.addEventListener('touchmove', e => { e.preventDefault(); if (!scratching) return; const p = getPos(e); scratchAt(p.x, p.y); }, { passive: false });
-  canvas.addEventListener('touchend', () => { scratching = false; });
-}
-
-// ── QUIZ "¿Cuál libro es para ti?" ──
-const QUIZ = [
-  {
-    q: "¿Quién eres en esta historia?",
-    opts: [
-      { t: "Soy hombre y quiero entender qué siente ella", v: "h" },
-      { t: "Soy mujer y quiero reencontrarme conmigo", v: "m" }
-    ]
-  },
-  {
-    q: "¿Qué tan listo/a estás para leer?",
-    opts: [
-      { t: "Quiero algo rápido para probar, una idea clara", v: "entrada" },
-      { t: "Quiero ir a fondo, la guía completa", v: "core" },
-      { t: "Tengo el problema más específico de hablar/pedir", v: "comp" }
-    ]
-  },
-  {
-    q: "¿Prefieres ahorrar o un libro a la vez?",
-    opts: [
-      { t: "Quiero el recorrido completo y ahorrar", v: "pack" },
-      { t: "Prefiero empezar con uno y ver cómo me va", v: "single" }
-    ]
-  }
-];
-
-const RECOMMENDATIONS = {
-  'h_pack': { id: "hp", line: "h", title: "Pack: El Hombre Que Ella Desea", desc: "Los 3 libros juntos en orden — diagnóstico, plan y comunicación. El recorrido completo a mejor precio." },
-  'm_pack': { id: "mp", line: "m", title: "Pack: La Mujer Que Se Reencuentra", desc: "Los 3 libros juntos diseñados para acompañarse — el camino completo a tu reencuentro." },
-  'h_entrada': { id: "h1", line: "h", title: "Lo Que Ella No Se Atreve A Pedirte", desc: "El más corto y directo. Te da el mapa de las 9 verdades silenciadas." },
-  'h_core': { id: "h2", line: "h", title: "El Amante Que Ella No Cambia Por Nadie", desc: "La guía completa: 8 capítulos profundos + plan de 4 semanas para ejecutar." },
-  'h_comp': { id: "h3", line: "h", title: "Conversaciones De Cama", desc: "El lenguaje exacto para abrir lo que nunca se ha hablado." },
-  'm_entrada': { id: "m1", line: "m", title: "Las Señales Que Tu Deseo Te Manda", desc: "Tu mapa: 9 verdades + 6 apagadores. Empieza por aquí." },
-  'm_core': { id: "m2", line: "m", title: "Reconexión", desc: "La guía completa con ejercicios en privado y al ritmo de tu cuerpo." },
-  'm_comp': { id: "m3", line: "m", title: "Pedir Sin Culpa", desc: "Recuperas tu voz para decir lo que quieres y lo que no." }
-};
-
-let quizStep = 0;
-const quizAnswers = [];
-
-function renderQuizStep() {
-  const content = document.getElementById('quizContent');
-  const bar = document.getElementById('quizBar');
-  bar.style.width = `${(quizStep / QUIZ.length) * 100}%`;
-  if (quizStep >= QUIZ.length) {
-    showQuizResult(); return;
-  }
-  const step = QUIZ[quizStep];
-  content.innerHTML = `
-    <div class="quiz-card__question">${step.q}</div>
-    <div class="quiz-card__options">
-      ${step.opts.map((o, i) => `<button class="quiz-card__opt" onclick="answerQuiz(${i})">${o.t}</button>`).join('')}
-    </div>
-  `;
-}
-function answerQuiz(idx) {
-  quizAnswers.push(QUIZ[quizStep].opts[idx].v);
-  quizStep++;
-  renderQuizStep();
-}
-function showQuizResult() {
-  const bar = document.getElementById('quizBar');
-  bar.style.width = '100%';
-  const [line, type, ownership] = quizAnswers;
-  let key;
-  if (ownership === 'pack') key = `${line}_pack`;
-  else key = `${line}_${type}`;
-  const rec = RECOMMENDATIONS[key] || RECOMMENDATIONS[`${line}_core`];
-  const book = lookupBook(rec.line, rec.id);
-  document.getElementById('quizContent').innerHTML = `
-    <div class="quiz-card__result">
-      <div class="quiz-card__result-kicker">Tu match</div>
-      <div class="quiz-card__result-title">${rec.title}</div>
-      <div class="quiz-card__result-desc">${rec.desc}</div>
-      <a class="quiz-card__result-btn" onclick="closeQuizAndOpen('${rec.line}','${rec.id}')">Ver este libro</a>
-      <button class="quiz-card__restart" onclick="restartQuiz()">Hacer el quiz otra vez</button>
-    </div>
-  `;
-}
-function closeQuizAndOpen(line, id) {
-  const isPack = id.endsWith('p');
-  if (isPack) openPackDrawer(line);
-  else openDrawer(line, id);
-}
-function restartQuiz() {
-  quizStep = 0; quizAnswers.length = 0;
-  renderQuizStep();
-}
-
-// ── LEAD POPUP (capítulo gratis) — POST a Shopify /contact ──
-function openLeadPopup() {
-  document.getElementById('leadPopup').classList.add('open');
-  document.getElementById('leadPopupBg').classList.add('open');
-}
-function closeLeadPopup() {
-  document.getElementById('leadPopup').classList.remove('open');
-  document.getElementById('leadPopupBg').classList.remove('open');
-}
-function submitLead(e) {
-  e.preventDefault();
-  const form = document.getElementById('leadForm');
-  const email = form.querySelector('input[type="email"]').value.trim();
-  if (!email) return;
-  // Enviar al endpoint de Shopify en background (fire-and-forget)
-  const fd = new FormData(form);
-  fetch(form.action, { method: 'POST', body: fd, mode: 'no-cors' }).catch(()=>{});
-  // Registrar localmente
-  localStorage.setItem('nw_lead_email', email);
-  localStorage.setItem('nw_lead_timestamp', Date.now());
-  localStorage.setItem('nw_lead_done', '1');
-  // UI éxito
-  const popup = document.getElementById('leadPopup');
-  popup.classList.add('lead-popup--success');
-  popup.innerHTML = `
-    <button class="lead-popup__close" onclick="closeLeadPopup()" aria-label="Cerrar">×</button>
-    <div class="lead-popup__icon">✓</div>
-    <h3 class="lead-popup__title">Listo, ya va en camino</h3>
-    <p class="lead-popup__sub">Te enviamos el capítulo a <strong>${email}</strong>. Si no llega en 1 hora, revisa spam o escríbenos por WhatsApp.</p>
-    <button class="lead-popup__btn" onclick="closeLeadPopup()">Seguir explorando</button>
-  `;
-  try { if (window.gtag) gtag('event','lead_captured',{event_category:'engagement'}); } catch(e){}
-  try { if (window.fbq) fbq('track','Lead'); } catch(e){}
-  setTimeout(closeLeadPopup, 4500);
-}
-
-// Trigger del LEAD popup: 35% scroll o 25 seg (lo que pase primero)
-(function() {
-  if (localStorage.getItem('nw_lead_done') === '1') return;
-  let shown = false;
-  function show() {
-    if (shown) return;
-    shown = true;
-    openLeadPopup();
-  }
-  window.addEventListener('scroll', () => {
-    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-    if (pct > 0.35) show();
-  }, { passive: true });
-  setTimeout(show, 25000);
-})();
-
-// ── EXIT INTENT POPUP — retención cuando el cursor va a cerrar ──
-function openExitPopup() {
-  document.getElementById('exitPopup').classList.add('open');
-  document.getElementById('exitPopupBg').classList.add('open');
-  localStorage.setItem('nw_exit_shown', '1');
-  try { if (window.gtag) gtag('event','exit_intent_shown',{event_category:'engagement'}); } catch(e){}
-}
-function closeExitPopup() {
-  document.getElementById('exitPopup').classList.remove('open');
-  document.getElementById('exitPopupBg').classList.remove('open');
-}
-(function() {
-  // No mostrar 2 veces en la misma sesión, ni si ya compró
-  if (sessionStorage.getItem('nw_exit_session') === '1') return;
-  if (localStorage.getItem('nw_purchased') === '1') return;
-  let armed = false;
-  // Armar el exit-intent solo después de 8 seg en la página
-  setTimeout(() => { armed = true; }, 8000);
-  document.addEventListener('mouseleave', (e) => {
-    if (!armed) return;
-    if (e.clientY < 10 && !document.getElementById('exitPopup').classList.contains('open')) {
-      openExitPopup();
-      sessionStorage.setItem('nw_exit_session', '1');
-    }
-  });
-  // También mobile: cuando llega al fondo de la página + intenta cerrar
-  let lastY = 0;
-  window.addEventListener('scroll', () => {
-    if (!armed) return;
-    const y = window.scrollY;
-    const atBottom = (window.innerHeight + y) >= document.body.scrollHeight - 200;
-    // Si llega al fondo y empieza a scrollear de vuelta hacia arriba
-    if (atBottom && y < lastY - 50 && !document.getElementById('exitPopup').classList.contains('open')) {
-      openExitPopup();
-      sessionStorage.setItem('nw_exit_session', '1');
-    }
-    lastY = y;
-  }, { passive: true });
-})();
-
-// ── LIVE STATUS — datos estáticos basados en histórico real Netwheels ──
-// "+233k personas" = visitantes verificados de la tienda Fourthwall histórica
-// "Millones de vistas" = suma agregada de visualizaciones en YouTube/IG/TikTok/FB
-// Si quieres actualizar estos números, edita el HTML directamente en .live-status__num
-function updateLiveStatus() {
-  // Reservado para futura conexión a analytics real (Cloudflare/Plausible/counter.dev)
-}
-
-// ── NOTIFICACIONES WHATSAPP — asistente proactivo (Nashly + Edwards) ──
-const WA_NUM = "593984641331";
-const NASHLY_AVATAR = "https://d8j0ntlcm91z4.cloudfront.net/user_31Yb9LpaofPPye2db3buWC1sJh6/hf_20260527_035620_6bb13e1e-d5bd-4b1a-9629-514899575726.png";
-const EDWARDS_AVATAR = "https://d8j0ntlcm91z4.cloudfront.net/user_31Yb9LpaofPPye2db3buWC1sJh6/hf_20260527_035625_99596804-d8fa-4db9-bae2-dab4e11475f8.png";
-
-// Notifs informativas (sin cupón) — por tiempo
-const WA_INFO = [
-  // 1ra: Nashly bienvenida
-  { name: "Nashly · Netwheels", avatar: NASHLY_AVATAR, time: "hace un momento",
-    msg: "Hola guapa 💌 Si tienes dudas sobre cuál libro es para ti, escríbeme aquí. Te oriento sin compromiso." },
-  // 2da: Edwards
-  { name: "Edwards · Netwheels", avatar: EDWARDS_AVATAR, time: "hace un min",
-    msg: "Si lo que estás leyendo te llama, dale clic. Si dudas en cuál pack te conviene, escríbeme." },
-  // 3ra: Nashly cierre amable
-  { name: "Nashly · Netwheels", avatar: NASHLY_AVATAR, time: "hace unos min",
-    msg: "¿Te resuena algo de lo que cuento en los videos? Si quieres conversar antes, aquí estoy." }
-];
-
-// Notifs CUPÓN — solo por acción (exit-intent, drawer cerrado, scroll back)
-const WA_COUPON = [
-  { name: "Nashly · Netwheels", avatar: NASHLY_AVATAR, time: "ahora",
-    msg: "Espera 🎁 antes de irte, el cupón BIENVENIDA10 te da 10% extra al checkout. Aplica al toque." },
-  { name: "Edwards · Netwheels", avatar: EDWARDS_AVATAR, time: "ahora",
-    msg: "Antes de cerrar, recuerda 🎁 BIENVENIDA10 sigue activo. 10% extra en cualquier libro." },
-  { name: "Nashly · Netwheels", avatar: NASHLY_AVATAR, time: "ahora",
-    msg: "Última vez 💌 BIENVENIDA10 te espera. Si dudas, escríbeme y te ayudo a elegir." }
-];
-
-let lastSeenLine = null;
-let couponShownCount = 0;
-let drawerOpenedOnce = false;
-
-function detectLineSection() {
-  const m = document.getElementById('linea-mujer');
-  const h = document.getElementById('linea-hombre');
-  if (!m || !h) return null;
-  const mTop = m.getBoundingClientRect().top;
-  const hTop = h.getBoundingClientRect().top;
-  const viewportMid = window.innerHeight / 2;
-  if (mTop < viewportMid && mTop > -m.offsetHeight) return 'm';
-  if (hTop < viewportMid && hTop > -h.offsetHeight) return 'h';
-  return null;
-}
-window.addEventListener('scroll', () => {
-  const seen = detectLineSection();
-  if (seen) lastSeenLine = seen;
-}, { passive: true });
-
-function showWaNotif(notif) {
-  const old = document.getElementById('waNotif');
-  if (old) old.remove();
-  const url = `https://wa.me/${WA_NUM}?text=${encodeURIComponent('Hola Netwheels, vengo de la landing')}`;
-  const el = document.createElement('a');
-  el.id = 'waNotif';
-  el.className = 'wa-notif';
-  el.href = url; el.target = '_blank'; el.rel = 'noopener';
-  el.setAttribute('data-track', 'wa_notif_click');
-  el.innerHTML = `
-    <div class="wa-notif__avatar" style="background-image:url(${notif.avatar})"></div>
-    <button class="wa-notif__close" onclick="event.preventDefault(); event.stopPropagation(); document.getElementById('waNotif').remove();">×</button>
-    <div class="wa-notif__head">
-      <span class="wa-notif__name">${notif.name}</span>
-      <span class="wa-notif__time">${notif.time}</span>
-    </div>
-    <div class="wa-notif__msg">${notif.msg}</div>
-  `;
-  document.body.appendChild(el);
-  requestAnimationFrame(() => el.classList.add('show'));
-  setTimeout(() => {
-    if (el.parentNode) {
-      el.classList.remove('show');
-      setTimeout(() => el.remove(), 600);
-    }
-  }, 13000);
-}
-
-// Notifs informativas POR TIEMPO (sin cupón)
-(function scheduleInfoNotifs() {
-  if (localStorage.getItem('nw_wa_info_done') === '1') return;
-  setTimeout(() => showWaNotif(WA_INFO[0]), 18000);  // Nashly primera
-  setTimeout(() => showWaNotif(WA_INFO[1]), 65000);  // Edwards segunda
-  setTimeout(() => {
-    showWaNotif(WA_INFO[2]);
-    localStorage.setItem('nw_wa_info_done', '1');
-  }, 115000);  // Nashly tercera
-})();
-
-// CUPONES POR ACCIÓN — máx 3 en toda la sesión
-function showCouponNotif() {
-  if (couponShownCount >= 3) return;
-  if (sessionStorage.getItem('nw_coupon_cooldown') === '1') return;
-  const notif = WA_COUPON[couponShownCount];
-  if (!notif) return;
-  showWaNotif(notif);
-  couponShownCount++;
-  // Cooldown de 60s para no spam si dispara múltiples triggers seguidos
-  sessionStorage.setItem('nw_coupon_cooldown', '1');
-  setTimeout(() => sessionStorage.removeItem('nw_coupon_cooldown'), 60000);
-}
-
-// Trigger 1: cerró drawer sin comprar (acción "casi compré pero me fui")
-const origCloseDrawer = window.closeDrawer;
-window.closeDrawer = function() {
-  if (origCloseDrawer) origCloseDrawer();
-  if (drawerOpenedOnce) {
-    setTimeout(showCouponNotif, 800);
-  }
-};
-const origOpenDrawer = window.openDrawer;
-if (origOpenDrawer) {
-  window.openDrawer = function(line, id) {
-    drawerOpenedOnce = true;
-    return origOpenDrawer(line, id);
-  };
-}
-
-// Trigger 2: scroll-back desde el fondo (estuvo en el bottom + scrolleó hacia arriba)
-(function() {
-  let reachedBottom = false;
-  let lastY = 0;
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    const atBottom = (y + window.innerHeight) >= document.body.scrollHeight - 250;
-    if (atBottom) reachedBottom = true;
-    // Si tocó el fondo y empieza a subir
-    if (reachedBottom && y < lastY - 100) {
-      reachedBottom = false;
-      showCouponNotif();
-    }
-    lastY = y;
-  }, { passive: true });
-})();
-
-// ── BIENVENIDA MODAL — solo 1ra visita, con cupón visible ──
-function closeWelcome() {
-  document.getElementById('welcome').classList.remove('open');
-  document.getElementById('welcomeBg').classList.remove('open');
-}
-(function() {
-  if (localStorage.getItem('nw_welcomed_v2') === '1') return;
-  setTimeout(() => {
-    document.getElementById('welcome').classList.add('open');
-    document.getElementById('welcomeBg').classList.add('open');
-    localStorage.setItem('nw_welcomed_v2', '1');
-  }, 2000);
-})();
-
-// ── LIVE TICKER — actividad real (visitas en este navegador), sin nombres inventados ──
-(function() {
-  const ticker = document.getElementById('liveTicker');
-  if (!ticker) return;
-  // Mensajes basados en DATOS REALES de Netwheels (verificables)
-  const messages = [
-    '👀 <span class="live-ticker__strong">Estás viendo</span> nuestra primera tienda digital',
-    '🎥 <span class="live-ticker__strong">+1.9M</span> personas siguen nuestros canales',
-    '📖 <span class="live-ticker__strong">+293M</span> visualizaciones en YouTube',
-    '⚡ <span class="live-ticker__strong">Acceso digital</span> en menos de 60 segundos',
-    '🔒 Compra <span class="live-ticker__strong">100% privada</span> y segura',
-    '🎁 Usa <span class="live-ticker__strong">BIENVENIDA10</span> al checkout para 10% extra'
-  ];
-  let idx = 0;
-  function rotate() {
-    ticker.innerHTML = messages[idx % messages.length];
-    ticker.classList.add('show');
-    idx++;
-    setTimeout(() => {
-      ticker.classList.remove('show');
-      setTimeout(rotate, 600);
-    }, 6500);
-  }
-  setTimeout(rotate, 6000); // empieza a los 6 seg
-})();
-
-// ── TRUST FLOATING BADGE — aparece después de scroll ──
-(function() {
-  const badge = document.getElementById('trustFloat');
-  if (!badge) return;
-  let shown = false;
-  window.addEventListener('scroll', () => {
-    if (shown) return;
-    if (window.scrollY > 400) {
-      shown = true;
-      badge.classList.add('show');
-      // Se queda visible siempre, no se oculta
-    }
-  }, { passive: true });
-})();
-
-// ── PULSE en CTAs después de 25 seg sin clic ──
-(function() {
-  setTimeout(() => {
-    document.querySelectorAll('.book__buy, .pack-spotlight__btn').forEach((btn, i) => {
-      setTimeout(() => btn.classList.add('pulse'), i * 200);
+    document.querySelectorAll('.card, .stat, .service, .step, .cta').forEach((el) => {
+      el.style.opacity = '0';
+      observer.observe(el);
     });
-  }, 25000);
-})();
-
-// ── INIT ──
-setupHeroMarquee();
-renderBooks('m', 'booksM');
-renderBooks('h', 'booksH');
-renderPack('m', 'packM');
-renderPack('h', 'packH');
-renderReviews();
-setupReveal();
-startPurchaseFeed();
-startCountdown();
-renderCart();
-setupScratch();
-renderQuizStep();
-updateLiveStatus();
+  }
 </script>
-
-<!--
-  GA4 (descomenta y reemplaza ID real):
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
-
-  META PIXEL (descomenta y reemplaza ID real):
-  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','XXXXXXXXXXXXXXX');fbq('track','PageView');</script>
--->
-
 </body>
 </html>
